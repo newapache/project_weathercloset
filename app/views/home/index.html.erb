@@ -48,24 +48,25 @@
 
           <div class="col-6 row align-items-center ml-0 mr-0">
             <!-- wansoo : 현재 시각의 날씨 아이콘을 바꿔야해요! assets/ =현재 날씨  .png 이런식으로 바꿔주세요.-->
-            <div class="col-6"><img id="now-images" src="assets/partly-cloudy-night.png" alt="now weather icon"></div>
+            <div class="col-6"><img id="now-images" src="assets/<%=@currentData.icon%>.png" alt="now weather icon"></div>
 
 
 
             <!-- wansoo : <값> 괄호까지 지우시고 받아온 값 넣어주시면 됩니당~~-->
             <div class="col-6" id="now-weather">
             <!-- wansoo : 현재 시각(숫자만)을 받아와주세요! " <현재시각>시" 이렇게!!-->
-            <11>시<br>
+            <%= Time.now.in_time_zone("Seoul").hour %> 시<br>
             <!-- wansoo : 온도-->
-            <32>도<br>
+            <%=@currentData.temperature %>도<br>
             <!-- wansoo : 현재 시각의 날씨를 받아와주세요  <현재날씨>이렇게 -->
-            <구름><br>
+            <%=@currentData.summary %><br>
             <!--wansoo : 습도-->
-            <습도><br>
+            습도:<%=@currentData.humidity * 100%><br>
             <!--wansoo : 최고기온, 최저기온 <몇도> 이부분을 지우고 최고기온, 최저기온을 가져와주세요!--->
-            최고기온 : <몇도> 최저기온 : <몇도> <br>
+            최고기온 : <%= @data[0].temperatureMax %> 최저기온 : <%= @data[0].temperatureMin %> <br>
             <!--wansoo : 강수량 <0.0> 지우고 강수량 값 받아와주세여~-->
-            강수량 : <0.0>mm
+            <!--완수 코멘트 : 강수량대신 강수확률이 더 사용자가 보기 편할 것 같아서 강수확률로 바꿧어여~-->
+            강수확률 : <%=@data[0].precipProbability * 100 %> %
             <!--wansoo : 미세먼지는 if-else로 단계별로 나타내주시면 감사하겠습니다~~(0-2는 매우좋음? 3-4 좋음, 5-6 중간, 7-8 나쁨, 9-10 : 매우나쁨 이런식으로!!) -->
             미세먼지 : <나쁨>
 
@@ -80,9 +81,9 @@
             <div class=" main-atweather align-items-center justify-content-center row ml-0 mr-0">
 
             <!--wansoo : 현재시각+1의 날씨 아이콘을 바꿔야해요! assets/  1시간 뒤의 날씨  .png 이런식으로 바꿔주세요. -->
-                <img  id="after-icon" src="assets/partly-cloudy-night.png" alt="after 1hour icon">
+                <img  id="after-icon" src="assets/<%=@hourlyData[1].icon%>.png" alt="after 1hour icon">
             <!-- wansoo : 현재시각+1dml 날씨를 알려주세요!-->
-              <div id="after-weather" class="ml-3">구름</div>
+              <div id="after-weather" class="ml-3"><%=@hourlyData[1].summary%></div>
             </div>
           </div>
 
@@ -95,10 +96,10 @@
             <div class=" main-atweather align-items-center justify-content-center row ml-0 mr-0">
 
           <!--wansoo : 현재시각+1의 날씨 아이콘을 바꿔야해요! assets/  1시간 뒤의 날씨  .png 이런식으로 바꿔주세요. -->
-                <img  id="after-icon" src="assets/partly-cloudy-night.png" alt="after 2hour icon">
+                <img  id="after-icon" src="assets/<%=@hourlyData[2].icon%>.png" alt="after 2hour icon">
 
           <!-- wansoo : 현재시각+1dml 날씨를 알려주세요!-->
-              <div id="after-weather" class="ml-3">구름</div>
+              <div id="after-weather" class="ml-3"><%=@hourlyData[2].summary%></div>
             </div>
           </div>
 
