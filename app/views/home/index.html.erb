@@ -55,18 +55,27 @@
             <!-- wansoo : <값> 괄호까지 지우시고 받아온 값 넣어주시면 됩니당~~-->
             <div class="col-6" id="now-weather">
             <!-- wansoo : 현재 시각(숫자만)을 받아와주세요! " <현재시각>시" 이렇게!!-->
-            <%= Time.now.in_time_zone("Seoul").hour %> 시<br>
+            <% if @korTime == 24 %>
+              자정 
+            <% elsif @korTime == 12 %>
+              정오
+            <% elsif @korTime > 12 %>
+              오후 <%= @korTime-12 %>시
+            <% else %>
+              오전 <%= @korTime %>시
+            <% end %>
+            <br>
             <!-- wansoo : 온도-->
-            <%=@currentData.temperature %>도<br>
+            <%=@currentData.temperature.to_i %>도<br>
             <!-- wansoo : 현재 시각의 날씨를 받아와주세요  <현재날씨>이렇게 -->
             <%=@currentData.summary %><br>
             <!--wansoo : 습도-->
-            습도:<%=@currentData.humidity * 100%><br>
+            습도:<%=(@currentData.humidity * 100).to_i%>%<br>
             <!--wansoo : 최고기온, 최저기온 <몇도> 이부분을 지우고 최고기온, 최저기온을 가져와주세요!--->
-            최고기온 : <%= @data[0].temperatureMax %> 최저기온 : <%= @data[0].temperatureMin %> <br>
+            최고기온 : <%= @data[0].temperatureMax.to_i %> 최저기온 : <%= @data[0].temperatureMin.to_i %> <br>
             <!--wansoo : 강수량 <0.0> 지우고 강수량 값 받아와주세여~-->
             <!--완수 코멘트 : 강수량대신 강수확률이 더 사용자가 보기 편할 것 같아서 강수확률로 바꿧어여~-->
-            강수확률 : <%=@data[0].precipProbability * 100 %>%
+            강수확률 : <%=(@currentData.precipProbability * 100).to_i %>%
             <!--wansoo : 미세먼지는 if-else로 단계별로 나타내주시면 감사하겠습니다~~(0-2는 매우좋음? 3-4 좋음, 5-6 중간, 7-8 나쁨, 9-10 : 매우나쁨 이런식으로!!) -->
             미세먼지 : <나쁨>
 
