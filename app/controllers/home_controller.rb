@@ -7,7 +7,7 @@ class HomeController < ApplicationController
         @data = forecast.daily.data
         #unixTime = forecast.hourly.data[0].time.to_s
         #@localTime = DateTime.strptime(unixTime,'%s')
-        
+        @korTime = Time.now.in_time_zone("Seoul").hour
         
         @hourlyData = forecast.hourly.data
     end
