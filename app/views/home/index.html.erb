@@ -49,7 +49,7 @@
 
           <div class="col-6 row align-items-center ml-0 mr-0">
             <!-- wansoo : 현재 시각의 날씨 아이콘을 바꿔야해요! assets/ =현재 날씨  .png 이런식으로 바꿔주세요.-->
-            <div class="col-6"><img id="now-images" src="assets/<%=@currentData.icon%>.png" alt="now weather icon"></div>
+            <div class="col-6"><img id="now-images" src="assets/wicon/<%=@currentData.icon%>.png" alt="now weather icon"></div>
 
 
 
@@ -84,7 +84,7 @@
             <div class=" main-atweather align-items-center justify-content-center row ml-0 mr-0">
 
             <!--wansoo : 현재시각+1의 날씨 아이콘을 바꿔야해요! assets/  1시간 뒤의 날씨  .png 이런식으로 바꿔주세요. -->
-                <img  id="after-icon" src="assets/<%=@hourlyData[1].icon%>.png" alt="after 1hour icon">
+                <img  id="after-icon" src="assets/wicon/<%=@hourlyData[1].icon%>.png" alt="after 1hour icon">
             <!-- wansoo : 현재시각+1dml 날씨를 알려주세요!-->
               <div id="after-weather" class="ml-3"><%=@hourlyData[1].summary%></div>
             </div>
@@ -101,7 +101,7 @@
             <div class=" main-atweather align-items-center justify-content-center row ml-0 mr-0">
 
           <!--wansoo : 현재시각+2의 날씨 아이콘을 바꿔야해요! assets/  2시간 뒤의 날씨  .png 이런식으로 바꿔주세요. -->
-                <img  id="after-icon" src="assets/<%=@hourlyData[2].icon%>.png" alt="after 2hour icon">
+                <img  id="after-icon" src="assets/wicon/<%=@hourlyData[2].icon%>.png" alt="after 2hour icon">
 
           <!-- wansoo : 현재시각+2 날씨를 알려주세요!-->
               <div id="after-weather" class="ml-3"><%=@hourlyData[2].summary%></div>
