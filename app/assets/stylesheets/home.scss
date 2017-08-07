@@ -1,0 +1,26 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+*{box-sizing : border-box;}
+//article{height:50%}
+article{border:1px solid gray;}
+/*title letter 색*/
+span.tletter{font-weight: bold; color: #31305c;}
+
+/*main화면의 날씨 테이블*/
+div.main-tweather{width: 100%; height: 75%; border:1px solid blue;}
+div.main-tweather>div{border:0.5px solid red;}
+
+
+/*main 화면 날씨 detaiil*/
+  /*main화면 날씨 after 1,2 hour letter*/
+  div.main-aletter{color: gray; font-weight: bold; width: 80%; height: 20%;}
+  /*main화면 날씨 icon*/
+  div.main-atweather{width: 100%; height: 60%;}
+  #after-icon{height: 50px; width: 50px;}
+
+/*main화면 today best cody 이미지 크기 및 배치*/
+.main-tcody{height: 80%;}
+#now-wicon{width: 100%; height: 100%;}
+#now-wether{ width: 40%; height:80%;}
+#main-tcody{width: 70%; height: 80%;}

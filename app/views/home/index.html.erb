@@ -1,1 +1,188 @@
-<h1>난 너가 제발 됐으면 좋겠다...</h1>
+<html>
+<head>
+  <meta charset="UTF-8" lang="ko">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!--bootstrap css-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <!--index.css-->
+  <link rel="stylesheet" type="text/css" href="home.scss">
+  <!--<link rel="stylesheet" href="index.css">-->
+  <title>index.html</title>
+</head>
+<body>
+
+<!--아래 div는 날씨와 오늘의 코디 배치를 위해 넣었어요.-->
+<div class="row mt-1 ml-auto mr-auto">
+
+
+<div class="container row col-8 ml-auto mr-auto">
+  <!--날씨를 보여주는 article-->
+  <article class="main-weather col row justify-content-between">
+  <h1 class="sr-only">간략한 날씨를 보여주는 화면</h1>
+    <span class="col-6 tletter mt-2">오늘 날씨</span>
+
+        <!--지역선택-->
+        <select name="sido" id="search_area" class="search_area col-6 mt-2" title="지역 선택" >
+          <option value="4200000000">강원도</option>
+          <option value="2600000000">부산광역시</option>
+          <option value="1100000000">서울특별시</option>
+          <option value="4100000000">경기도</option>
+          <option value="4800000000">경상남도</option>
+          <option value="4700000000">경상북도</option>
+          <option value="2900000000">광주광역시</option>
+          <option value="2700000000">대구광역시</option>
+          <option value="3000000000">대전광역시</option>
+          <option value="3600000000">세종특별자치시</option>
+          <option value="3100000000">울산광역시</option>
+          <option value="2800000000">인천광역시</option>
+          <option value="4600000000">전라남도</option>
+          <option value="4500000000">전라북도</option>
+          <option value="5000000000">제주특별자치도</option>
+          <option value="4400000000">충청남도</option>
+          <option value="4300000000">충청북도</option>
+        </select>
+
+        <!--날씨-->
+        <div class="main-tweather mt-2 row ml-auto mr-auto">
+
+          <div class="col-6 row align-items-center ml-0 mr-0">
+            <!-- wansoo : 현재 시각의 날씨 아이콘을 바꿔야해요! assets/ =현재 날씨  .png 이런식으로 바꿔주세요.-->
+            <div class="col-6"><img id="now-images" src="assets/wicon/<%=@currentData.icon%>.png" alt="now weather icon"></div>
+
+
+
+            <!-- wansoo : <값> 괄호까지 지우시고 받아온 값 넣어주시면 됩니당~~-->
+            <div class="col-6" id="now-weather">
+            <!-- wansoo : 현재 시각(숫자만)을 받아와주세요! " <현재시각>시" 이렇게!!-->
+            <% if @korTime == 24 %>
+              자정 
+            <% elsif @korTime == 12 %>
+              정오
+            <% elsif @korTime > 12 %>
+              오후 <%= @korTime-12 %>시
+            <% else %>
+              오전 <%= @korTime %>시
+            <% end %>
+            <br>
+            <!-- wansoo : 온도-->
+            <%=@currentData.temperature.to_i %>도<br>
+            <!-- wansoo : 현재 시각의 날씨를 받아와주세요  <현재날씨>이렇게 -->
+            <%=@currentData.summary %><br>
+            <!--wansoo : 습도-->
+            습도:<%=(@currentData.humidity * 100).to_i%>%<br>
+            <!--wansoo : 최고기온, 최저기온 <몇도> 이부분을 지우고 최고기온, 최저기온을 가져와주세요!--->
+            최고기온 : <%= @data[0].temperatureMax.to_i %> 최저기온 : <%= @data[0].temperatureMin.to_i %> <br>
+            <!--wansoo : 강수량 <0.0> 지우고 강수량 값 받아와주세여~-->
+            <!--완수 코멘트 : 강수량대신 강수확률이 더 사용자가 보기 편할 것 같아서 강수확률로 바꿧어여~-->
+            강수확률 : <%=(@currentData.precipProbability * 100).to_i %>%
+            <!--wansoo : 미세먼지는 if-else로 단계별로 나타내주시면 감사하겠습니다~~(0-2는 매우좋음? 3-4 좋음, 5-6 중간, 7-8 나쁨, 9-10 : 매우나쁨 이런식으로!!) -->
+            미세먼지 : <나쁨>
+
+
+            </div>
+          </div>
+
+          <!--1시간 뒤 예보-->
+          <div class="col-3 row align-items-center justify-content-center ml-0 mr-0 pl-0 pr-0">
+            
+            <div class="main-aletter">
+              <%= Time.now.in_time_zone("Seoul").hour+1 %> 예보
+            </div>
+            <div class=" main-atweather align-items-center justify-content-center row ml-0 mr-0">
+
+            <!--wansoo : 현재시각+1의 날씨 아이콘을 바꿔야해요! assets/  1시간 뒤의 날씨  .png 이런식으로 바꿔주세요. -->
+                <img  id="after-icon" src="assets/wicon/<%=@hourlyData[1].icon%>.png" alt="after 1hour icon">
+            <!-- wansoo : 현재시각+1dml 날씨를 알려주세요!-->
+              <div id="after-weather" class="ml-3"><%=@hourlyData[1].summary%></div>
+            </div>
+          </div>
+
+
+          <!--2시간 뒤 예보-->
+          <div class="col-3 row align-items-center justify-content-center ml-0 mr-0 pl-0 pr-0">
+
+          <!--wansoo : 현재시각+1 코드를 바꿔주세요!-->
+            <div class="main-aletter">
+              <%= Time.now.in_time_zone("Seoul").hour+2 %> 예보
+            </div>
+            <div class=" main-atweather align-items-center justify-content-center row ml-0 mr-0">
+
+          <!--wansoo : 현재시각+2의 날씨 아이콘을 바꿔야해요! assets/  2시간 뒤의 날씨  .png 이런식으로 바꿔주세요. -->
+                <img  id="after-icon" src="assets/wicon/<%=@hourlyData[2].icon%>.png" alt="after 2hour icon">
+
+          <!-- wansoo : 현재시각+2 날씨를 알려주세요!-->
+              <div id="after-weather" class="ml-3"><%=@hourlyData[2].summary%></div>
+            </div>
+          </div>
+
+        </div>
+  </article>
+</div>
+
+
+<!--article class에 row를 주고 span에 mt-2를 주면 오늘의 날씨 layout에도 영향이가는 이유는 왜일까..?-->
+  <article class="today-best col-4">
+      <span class="tletter">오늘의 추천코디</span>
+      <div class="main-tcody row align-items-center justify-content-center">
+        <img id="main-tcody" src="assets/tcody.jpg" alt="today best cody">
+      </div>
+  </article>
+</div>
+
+
+<article class="mt-1 today-closet">
+  <span class="tletter">오늘의 옷장</span>
+  <table class="table mt-3">
+    <thead class="thead-inverse">
+    <tr>
+    <th colspan="2">Outer</th>
+    <th colspan="2">TOP</th>
+    <th colspan="2">Bottom</th>
+    <th colspan="2">Dress</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <th scope="row">블루종</th>
+    <td>불가</td>
+    <td>후드</td>
+    <td>불가</td>
+    <td>청치마</td>
+    <td>가능</td>
+    <td>원피스</td>
+    <td>가능</td>
+    </tr>
+    <tr>
+    <th scope="row">과잠</th>
+    <td>불가</td>
+    <td>반팔</td>
+    <td>가능</td>
+    <td>면바지</td>
+    <td>가능</td>
+    <td></td>
+    <td></td>
+    </tr>
+    <tr>
+    <th scope="row">가디건</th>
+    <td>가능</td>
+    <td>맨투맨</td>
+    <td>불가</td>
+    <td>치마</td>
+    <td>가능</td>
+    <td></td>
+    <td></td>
+    </tr>
+    </tbody>
+  </table>
+</article>
+
+
+  <!-- jQuery first, then Tether, then Bootstrap JS. -->
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+</body>
+</html>
