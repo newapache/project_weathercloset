@@ -1,0 +1,16 @@
+html{
+	font-size: 15px;
+	line-height: 1.6;
+	box-sizing: border-box;
+}
+
+* {
+	font-family: "Calisto MT","Bookman Old Style",Bookman,"Goudy Old Style",Garamond,"Hoefler Text","Bitstream Charter",Georgia,serif;
+	color: #181818;
+}
+
+/* body */
+.upload-img{
+    height: auto;
+    max-width: 100%;
+}
