@@ -73,12 +73,13 @@
             <!--wansoo : 습도-->
             습도:<%=(@currentData.humidity * 100).to_i%>%<br>
             <!--wansoo : 최고기온, 최저기온 <몇도> 이부분을 지우고 최고기온, 최저기온을 가져와주세요!--->
-            최고기온 : <%= @data[0].temperatureMax.to_i %> 최저기온 : <%= @data[0].temperatureMin.to_i %> <br>
+            최고기온 : <%= @data[0].temperatureMax.to_i %><br>
+            최저기온 : <%= @data[0].temperatureMin.to_i %> <br>
             <!--wansoo : 강수량 <0.0> 지우고 강수량 값 받아와주세여~-->
             <!--완수 코멘트 : 강수량대신 강수확률이 더 사용자가 보기 편할 것 같아서 강수확률로 바꿧어여~-->
-            강수확률 : <%=(@currentData.precipProbability * 100).to_i %>%
+            강수확률 : <%=(@currentData.precipProbability * 100).to_i %><br>
             <!--wansoo : 미세먼지는 if-else로 단계별로 나타내주시면 감사하겠습니다~~(0-2는 매우좋음? 3-4 좋음, 5-6 중간, 7-8 나쁨, 9-10 : 매우나쁨 이런식으로!!) -->
-            미세먼지 : <나쁨>
+            미세먼지 : <나쁨><br>
 
 
             </div>
@@ -88,7 +89,17 @@
           <div class="col-3 row align-items-center justify-content-center ml-0 mr-0 pl-0 pr-0">
             
             <div class="main-aletter">
-              <%= Time.now.in_time_zone("Seoul").hour+1 %> 예보
+              
+              <% if @korTime+1== 24 %>
+              자정 
+              <% elsif @korTime+1 == 12 %>
+              정오
+              <% elsif @korTime+1 > 12 %>
+              오후 <%= (@korTime+1)-12 %>시
+              <% else %>
+              오전 <%= @korTime+1 %>시
+              <% end %> 예보
+              
             </div>
             <div class=" main-atweather align-items-center justify-content-center row ml-0 mr-0">
 
@@ -105,7 +116,15 @@
 
           <!--wansoo : 현재시각+1 코드를 바꿔주세요!-->
             <div class="main-aletter">
-              <%= Time.now.in_time_zone("Seoul").hour+2 %> 예보
+              <% if @korTime+2== 24 %>
+              자정 
+              <% elsif @korTime+2 == 12 %>
+              정오
+              <% elsif @korTime+2 > 12 %>
+              오후 <%= (@korTime+2)-12 %>시
+              <% else %>
+              오전 <%= @korTime+2 %>시
+              <% end %> 예보
             </div>
             <div class=" main-atweather align-items-center justify-content-center row ml-0 mr-0">
 
@@ -123,17 +142,17 @@
 
 
 <!--article class에 row를 주고 span에 mt-2를 주면 오늘의 날씨 layout에도 영향이가는 이유는 왜일까..?-->
-  <article class="today-best col-4">
-      <span class="tletter">오늘의 추천코디</span>
-      <div class="main-tcody row align-items-center justify-content-center">
-        <img id="main-tcody" src="assets/tcody.jpg" alt="today best cody">
+  <article class=" container today-best col-4">
+      <div class="tletter mt-2">오늘의 추천코디</div>
+      <div class="main-tcody row align-items-center justify-content-center mt-3">
+        <img id="main-tcody" src="assets/photo12.jpg" alt="today best cody">
       </div>
   </article>
 </div>
 
 
-<article class="mt-1 today-closet">
-  <span class="tletter">오늘의 옷장</span>
+<article class="mt-1 today-closet container">
+  <div class="tletter mt-2">오늘의 옷장</div>
   <table class="table mt-3">
     <thead class="thead-inverse">
     <tr>
