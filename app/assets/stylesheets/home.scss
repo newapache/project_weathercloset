@@ -4,27 +4,28 @@
 *{box-sizing : border-box;}
 
 /*border:1px solid gray;*/
+.twoarticle{height:auto;}
 article{ height:auto; }
 
 /*title letter 색*/
 span.tletter{font-weight: bold; color: #31305c;}
-
+div.tletter{font-weight: bold; color: #31305c;}
 /*main화면의 날씨 테이블*/
-/* border:1px solid blue;} */
-div.main-tweather{width: 100%; height: 75%;}
-/*div.main-tweather>div{border:0.5px solid red;}*/
+/*  */
+div.main-tweather{width: 100%; height: 75%; border:1px solid #31305c;  }
+/*div.main-tweather>div{border:1px solid gray;}*/
 
 
 
 /*main 화면 날씨 detaiil*/
   /*main화면 날씨 after 1,2 hour letter*/
-  div.main-aletter{color: gray; font-weight: bold; width: 80%; height: 20%;}
+  div.main-aletter{color: gray; font-weight: bold; width: 80%; height: 30%; margin-bottom:5px; text-align:center;  }
   /*main화면 날씨 icon*/
-  div.main-atweather{width: 100%; height: 60%;}
+  div.main-atweather{width: 100%; height: 30%;}
   #after-icon{height: 50px; width: 50px;}
 
 /*main화면 today best cody 이미지 크기 및 배치*/
-.main-tcody{height: 70%;}
+.main-tcody{height:80%;}
 #now-images{width: 100%; height: 100%;}
 #now-weather{ width: 40%; height:80%;}
-#main-tcody{width: 50%; height: 100%;}
+#main-tcody{width: 60%; height: 100%;}
