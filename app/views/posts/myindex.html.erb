@@ -15,8 +15,8 @@
           </div>
           <div class="col-9 d-flex flex-column justify-content-center">
             <span class="mb-1">이름
-                <a class="ml-1" href="">
-                  <img src="" style="width: 15px; height: 15px"></a>
+                <a class="ml-1" href="/home/setting">
+                  <i class="fa fa-cog" aria-hidden="true"></i></a>
             </span>
             <span class="small mb-1 font-weight-light">거주지역 : </span>
             <span class="small mb-1">스타일 : </span>
@@ -42,26 +42,62 @@
       </div>
     </div>
     <br>
-    <div class="row mb-5">
-      <div class="col-4">
+    <!-- 나중에는 루비 반복문으로 돌려야함 -->
+    <div class="row mb-5 no-gutters">
+      <div class="col-4 clst">
         <img class="upload-img" src="/assets/photo1.jpg" alt="업로드 사진" >
+        <div class="overlay">
+          <div class="text justify-content-center">
+            <i class="like fa fa-heart"></i>
+            <i class="comment fa fa-commenting-o"></i>
+          </div>
       </div>
-      <div class="col-4">
+      </div>
+      <div class="col-4 clst">
         <img class="upload-img" src="/assets/photo2.jpg" alt="업로드 사진" >
+        <div class="overlay">
+          <div class="text justify-content-center">
+            <i class="like fa fa-heart"></i>
+            <i class="comment fa fa-commenting-o"></i>
+          </div>
       </div>
-      <div class="col-4">
+      </div>
+      <div class="col-4 clst">
         <img class="upload-img" src="/assets/photo3.jpg" alt="업로드 사진" >
+        <div class="overlay">
+          <div class="text justify-content-center">
+            <i class="like fa fa-heart"></i>
+            <i class="comment fa fa-commenting-o"></i>
+          </div>
       </div>
     </div>
-    <div class="row mb-5">
-      <div class="col-4">
+    </div>
+    <div class="row mb-5 no-gutters">
+      <div class="col-4 clst">
         <img class="upload-img" src="/assets/photo4.jpg" alt="업로드 사진" >
+        <div class="overlay">
+          <div class="text justify-content-center">
+            <i class="like fa fa-heart"></i>
+            <i class="comment fa fa-commenting-o"></i>
+          </div>
       </div>
-      <div class="col-4">
+      </div>
+      <div class="col-4 clst">
         <img class="upload-img" src="/assets/photo5.jpg" alt="업로드 사진" >
+        <div class="overlay">
+          <div class="text justify-content-center">
+            <i class="like fa fa-heart"></i>
+            <i class="comment fa fa-commenting-o"></i>
+          </div>
       </div>
-      <div class="col-4">
+      </div>
+      <div class="col-4 clst">
         <img class="upload-img" src="/assets/photo6.jpg" alt="업로드 사진" >
+        <div class="overlay">
+          <div class="text justify-content-center">
+            <i class="like fa fa-heart"></i>
+            <i class="comment fa fa-commenting-o"></i>
+          </div>
       </div>
     </div>
     </div>
@@ -81,6 +117,13 @@
         <!-- body -->
         <div class="modal-body mx-auto">
           <%= form_tag("/posts/create",  method: "post", multipart: true) do %>
+            <div class="row justify-content-end">
+              <p> OPEN ? &nbsp;&nbsp;</p> 
+              <label class="switch">
+                <input type="checkbox" checked>
+                <span class="slider round"></span>
+              </label>
+            </div>
             <p> DATE&nbsp;&nbsp;:&nbsp;&nbsp;
                 <%= date_field_tag 'input_date', nil %>
             </p> PHOTO&nbsp;:&nbsp;
