@@ -8,6 +8,7 @@ article.daily-weather{
 
 article.weekly-weather{
   border: 1px solid blue;
+  height: 100vh;
 }
 
 
