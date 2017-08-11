@@ -1,0 +1,200 @@
+
+<head>
+  <meta charset="UTF-8" lang="ko">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!--bootstrap css-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <!--weather.css-->
+  <link rel="stylesheet" href="weather.css">
+</head>
+
+
+<!--날짜를 받아옵니다!-->
+
+
+<section class="row">
+
+<!--오늘의 날씨를 보여준다-->
+<article class="daily-weather container col-6 pr-0">
+  <h1 class="sr-only">오늘 날씨</h1>
+  <!--title-->
+  <div class="tcolor">
+    <span class="black">오늘의</span>
+    <span class="blue">날씨</span>
+  </div>
+  <!--현재의 날씨를 보여준다.-->
+  <div class="now-weather container">
+      <h1><%= @korTime%></h1>
+    <div><%=@korTime%></div>
+    <h1><%=@currentData.temperature.to_i %>도<br></h1>
+    <div></div>
+
+  </div>
+
+<!--0이 sunday부터 6까지(6은 saturday)-->
+       <% now = Time.now.in_time_zone('Seoul') %>
+       <!--오늘 월/일-->
+       <% tmonth = now.strftime("%m") %>
+       <% tday = now.strftime("%d") %>
+       <!--요일-->
+        <% myday = Integer(now.strftime("%w"))%>
+        <% if myday == 0%>      <% tday="일요일"%>
+        <% elsif myday== 1%>    <% tday="월요일"%>
+        <% elsif myday== 2%>    <% tday="화요일"%>
+        <% elsif myday== 3%>    <% tday="수요일"%>
+        <% elsif myday== 4%>    <% tday="목요일"%>
+        <% elsif myday== 5%>    <% tday="금요일"%>
+        <% elsif myday== 6%>    <% tday="토요일"%>
+        <%end%>
+        
+
+  <!--오늘의 전체 날씨를 보여준다-->
+  <div class="today-weather">
+    
+  </div>
+</article>
+
+<!-- 이번주 날씨를 보여준다-->
+<article class="weekly-weather container col-6 pl-0 pr-0">
+  <h1 class="sr-only">이번 주 날씨</h1>
+  <!--title-->
+  <div class="tcolor mt-2 offset-md-1">
+    <span class="black">이번 주</span>
+    <span class="blue">날씨</span>
+  </div>
+
+  <table class="tweekly offset-md-1 col-10" border="1">
+    <tbody>
+      <tr scope="row">
+        <td class="weekly">현재 날씨
+          <br>  현재시간   </td>
+        <td class="weekly">오늘 오전, <%=tday%>
+          <br>   날짜   </td>
+        <td class="weekly">오늘 오후, <%=tday%>
+          <br>  날짜   </td>
+          
+          
+          <!--myday날짜를 증가시켜준다-->
+        <% tmrday = myday+1 %>
+        <% if tmrday == 0%>      <% tmr="일요일"%>
+        <% elsif tmrday== 1%>    <% tmr="월요일"%>
+        <% elsif tmrday== 2%>    <% tmr="화요일"%>
+        <% elsif tmrday== 3%>    <% tmr="수요일"%>
+        <% elsif tmrday== 4%>    <% tmr="목요일"%>
+        <% elsif tmrday== 5%>    <% tmr="금요일"%>
+        <% elsif tmrday== 6%>    <% tmr="토요일"%>
+        <%end%>
+        
+        <td class="weekly">내일 오전, <%=tmr%>
+          <br>  날짜   </td>
+        <td class="weekly">내일 오후, <%=tmr%>
+          <br>  날짜   </td>
+
+      </tr>
+
+      <tr scope="row">
+        <td class="weekly-content">
+          <img src="wicon/clear-day.png" alt="">
+          <br>
+          <span>맑음</span><br>
+          기온 : <span class="temper">32</span><br>
+          강수확률 : <span class="precipitation">50%</span><br>
+        </td>
+
+        <td class="weekly-content">
+          <img src="wicon/clear-day.png" alt="">
+          <br>
+          <span>맑음</span><br>
+          기온 : <span class="temper">32</span><br>
+          강수확률 : <span class="precipitation">50%</span><br>
+        </td>
+
+
+        <td class="weekly-content">
+          <img src="wicon/clear-day.png" alt="">
+          <br>
+          <span>맑음</span><br>
+          기온 : <span class="temper">32</span><br>
+          강수확률 : <span class="precipitation">50%</span><br>
+        </td>
+
+        <td class="weekly-content">
+          <img src="wicon/clear-day.png" alt="">
+          <br>
+          <span>맑음</span><br>
+          기온 : <span class="temper">32</span><br>
+          강수확률 : <span class="precipitation">50%</span><br>
+        </td>
+
+        <td class="weekly-content">
+          <img src="wicon/clear-day.png" alt="">
+          <br>
+          <span>맑음</span><br>
+          기온 : <span class="temper">32</span><br>
+          강수확률 : <span class="precipitation">50%</span><br>
+        </td>
+      </tr>
+
+      <tr scope="row">
+        <td class="weekly">일요일
+        <br> 날짜 </td>
+        <td class="weekly">월요일
+        <br> 날짜 </td>
+        <td class="weekly">화요일
+        <br> 날짜 </td>
+        <td class="weekly">수요일
+        <br> 날짜 </td>
+        <td class="weekly">목요일
+        <br> 날짜 </td>
+      </tr>
+
+      <tr scope="row">
+        <td class="weekly-content">
+          <img src="wicon/clear-day.png" alt="">
+          <br>
+          <span>맑음</span><br>
+          기온 : <span class="temper">32</span><br>
+          강수확률 : <span class="precipitation">50%</span><br>
+        </td>
+        <td class="weekly-content">
+          <img src="wicon/clear-day.png" alt="">
+          <br>
+          <span>맑음</span><br>
+          기온 : <span class="temper">32</span><br>
+          강수확률 : <span class="precipitation">50%</span><br>
+        </td>
+        <td class="weekly-content">
+          <img src="wicon/clear-day.png" alt="">
+          <br>
+          <span>맑음</span><br>
+          기온 : <span class="temper">32</span><br>
+          강수확률 : <span class="precipitation">50%</span><br>
+        </td>
+        <td class="weekly-content">
+          <img src="wicon/clear-day.png" alt="">
+          <br>
+          <span>맑음</span><br>
+          기온 : <span class="temper">32</span><br>
+          강수확률 : <span class="precipitation">50%</span><br>
+        </td>
+        <td class="weekly-content">
+          <img src="wicon/clear-day.png" alt="">
+          <br>
+          <span>맑음</span><br>
+          기온 : <span class="temper">32</span><br>
+          강수확률 : <span class="precipitation">50%</span><br>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+
+
+</article>
+
+
+
+</section>
+
