@@ -39,18 +39,36 @@ div.now-weather{
   height: 50%;
   background-color: yellow;
 }
+
+div.nwtitle{
+    height:auto;
+    background-color:green;
+}
+
+div.nwcontent1{
+    height:100px;
+    background-color:pink;
+}
+
+#now-images{width: 100%; height: 100%;}
+
+.after-icon{   height: 100%; }
+
+div.nwcontent2{
+    height:100px;
+    background-color:red;
+}
+div.nwcontent3{
+    height:100px;
+    background-color:gray;
+}
 /*today-weather css*/
 div.today-weather{
   height: 50%;
   background-color: pink;
 }
 
-th.tnow-title{
-  height: 20%;
-}
-td.tnow-content{
-  height: 80%;
-}
+
 /*weekly-weather table css*/
 table.tweekly{
   vertical-align: middle;

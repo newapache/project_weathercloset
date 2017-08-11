@@ -25,11 +25,53 @@
     <span class="blue">날씨</span>
   </div>
   <!--현재의 날씨를 보여준다.-->
-  <div class="now-weather container">
-      <h1><%= @korTime%></h1>
-    <div><%=@korTime%></div>
-    <h1><%=@currentData.temperature.to_i %>도<br></h1>
-    <div></div>
+  <div class="now-weather container row ml-0 mr-0 mt-2">
+      
+    <div class="col-12 nwtitle"> 현재, 1시간 예보</div>
+    <div class="col-6 nwcontent1 row ml-0 mr-0 align-items-center">
+       
+        <img class="col-4 pl-0 pr-0" id="now-images" alt="현재 날씨 아이콘" src="/assets/wicon/<%=@currentData.icon%>.png"></img>
+        
+        <div class="col-8">
+            
+         <div class="row justify-content-center">
+            <span> 
+            <% if @korTime == 24 %>
+              자정 
+            <% elsif @korTime == 12 %>
+              정오
+            <% elsif @korTime > 12 %>
+              오후 <%= @korTime-12 %>시
+            <% else %>
+              오전 <%= @korTime %>시
+            <% end %> 현재
+            </span>
+         </div>
+        
+        <div class="row justify-content-center">
+            <span class="mr-1"><%=@currentData.temperature.to_i%>도</span>
+            <span><%=@currentData.summary %></span>
+        </div>
+        
+        
+        </div>
+    </div>
+    
+    
+     <div class="col-3 nwcontent3 ml-0 mr-0 row align-items-center">
+        <div class="">
+           <img class="after-icon col-5 pl-0 pr-0" src="/assets/wicon/<%=@hourlyData[1].icon%>.png" alt="after-2-icon"/>
+            <span><%=@hourlyData[1].summary%></span>
+        </div>
+    </div>
+    
+    
+    <div class="col-3 nwcontent3 ml-0 mr-0 row align-items-center">
+        <div class="">
+           <img class="after-icon col-5 pl-0 pr-0" src="/assets/wicon/<%=@hourlyData[2].icon%>.png" alt="after-2-icon"/>
+            <span><%=@hourlyData[2].summary%></span>
+        </div>
+    </div>
 
   </div>
 
