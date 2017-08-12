@@ -1,0 +1,12 @@
+.show-img{
+    width: 50vh;
+    height: auto;
+}
+.prof-img{
+    margin: 0;
+    width: 150px;
+    height: 150px;
+}
+.edit{
+    display:flex;
+}
