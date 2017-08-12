@@ -1,0 +1,119 @@
+/*글씨색*/
+span.sblack{
+  font-size: 25px;
+  font-weight: bold;
+  color : black;
+}
+span.sblue{
+  font-size:25px;
+  font-weight: bold;
+  /*#31305c*/
+  color :  #8585ff;
+}
+/*크기 지정*/
+div.stitle{
+    height: 10vh;
+}
+
+article.setting1{
+    height: 30vh;
+}
+
+article.setting2{
+    height: 40vh;
+}
+
+div.slocation{
+    height: 15vh;
+}
+
+#search_area{
+    height: 8vh;
+    font-size: 20px;
+}
+
+
+
+/*gender radio button css*/
+
+input[type="radio"] {
+    display:none;
+}
+
+/*
+input[type="radio"] + label {
+    color:yellow;
+    font-family:Arial, sans-serif;
+}
+*/
+
+
+input[type="radio"] + label span.female{
+    display:inline-block;
+    width:60px;
+    height:60px;
+    vertical-align:middle;
+    background: url(/assets/wicon/female_deselect.png) left center no-repeat;
+    cursor:pointer;
+}
+
+input[type="radio"]:checked + label span.female{
+    background: url(/assets/wicon/female_select.png) left center no-repeat;
+}
+
+input[type="radio"] + label span.male{
+    display:inline-block;
+    width:60px;
+    height:60px;
+    vertical-align:middle;
+    background: url(/assets/wicon/male_deselect.png) left center no-repeat;
+    cursor:pointer;
+}
+
+input[type="radio"]:checked + label span.male{
+    background: url(/assets/wicon/male_select.png) left center no-repeat;
+}
+
+/*range-slider bar css*/
+
+/*range bar(줄) 설정*/
+input[type=range] {
+
+  -webkit-appearance: none;
+
+  background-color: #0099FF;
+
+  height: 4px;
+
+  width: 80%;
+
+  border: none;
+
+  border-radius: 4px;
+
+}
+
+
+/*동그라미 크기!*/
+ input[type="range"]::-webkit-slider-thumb {
+
+ -webkit-appearance: none;
+
+ background-color: #0099FF;
+
+ border: none;
+
+ height: 30px;
+
+ width: 30px;
+
+ border-radius: 50%;
+
+ opacity: 0.8;
+
+}
+
+input[type=range]:focus { outline: none; }
+
+input[type=range]:hover { background: #B2E0FF; }
+
