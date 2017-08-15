@@ -42,6 +42,7 @@ GEM
       debug_inspector (>= 0.0.1)
     builder (3.2.3)
     byebug (9.0.6)
+    chartkick (2.2.4)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.1.x)
@@ -68,6 +69,8 @@ GEM
       multi_json
     globalid (0.4.0)
       activesupport (>= 4.2.0)
+    groupdate (3.2.0)
+      activesupport (>= 3)
     hashie (3.5.6)
     i18n (0.8.6)
     jbuilder (2.7.0)
@@ -174,9 +177,11 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
+  chartkick
   coffee-rails (~> 4.1.0)
   devise
   forecast_io
+  groupdate
   jbuilder (~> 2.0)
   jquery-rails
   rails (= 4.2.5)

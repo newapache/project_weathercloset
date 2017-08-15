@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   #devise gem 사용
-  resources :logins
   devise_for :user_infos
  
   

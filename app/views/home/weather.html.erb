@@ -115,8 +115,61 @@
         <%end%>
         
 
-  <!--오늘의 전체 날씨를 보여준다-->
+  <!--어제, 오늘 내일의 대략적인 날씨를 보여준다.-->
   <div class="today-weather container row ml-0 mr-0 mt-5">
+      
+            <canvas id="myChart" width="400" height="200"></canvas>
+            <script>
+            var ctx = document.getElementById("myChart").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ["오전 8시", "오후 4시", "자정", "오전 4시", "오전 8시", "정오","오후 4시", "오후 8시", "자정","오전 8시", "오후 4시", "자정"],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [ 23, 19, 3, 5, 2, 3,10, 8, 8, 3, 4, 5],
+                        backgroundColor: [
+                            'rgba(0,0,0,0)',
+                            'rgba(0,0,0,0)',
+                            'rgba(0,0,0,0)',
+                            'rgba(0,0,0,0)',
+                            'rgba(0,0,0,0)',
+                            'rgba(0,0,0,0)',
+                            'rgba(0,0,0,0)',
+                            'rgba(0,0,0,0)',
+                            'rgba(0,0,0,0)',
+                            'rgba(0,0,0,0)',
+                            'rgba(0,0,0,0)',
+                            'rgba(0,0,0,0)'
+                        ],
+                        borderColor: [
+                            'rgba(0,0,255,0.6)',
+                            'rgba(0,0,255,0.6)',
+                            'rgba(0,0,255,0.6)',
+                            'rgba(255,0,0,0.6)',
+                            'rgba(255,0,0,0.6)',
+                            'rgba(255,0,0,0.6)',
+                            'rgba(255,0,0,0.6)',
+                            'rgba(255,0,0,0.6)',
+                            'rgba(255,0,0,0.6)',
+                             'rgba(0,255,0,0.6)',
+                            'rgba(0,255,0,0.6)',
+                            'rgba(0,255,0,0.6)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                }
+            });
+            </script>
   
       
   </div>
@@ -259,8 +312,6 @@
 
 
 </article>
-
-
 
 </section>
 </div>
