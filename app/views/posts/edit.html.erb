@@ -1,2 +1,61 @@
-<h1>Posts#edit</h1>
-<p>Find me in app/views/posts/edit.html.erb</p>
+<div class="container">
+    <%= form_tag post_path(@post), method: "patch", multipart: true do %>
+              
+        <div class="row justify-content-end">
+          <p> OPEN ? &nbsp;&nbsp;</p> 
+          <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider round"></span>
+          </label>
+        </div>
+        
+        <!--new-->
+        <%#= form_tag posts_path, method: 'post' do %>
+        <%#= text_field_tag 'title' %>
+        <%#= text_area_tag 'content' %>
+        <%#= submit_tag 'Submit!' %>
+        <%# end %>
+        
+        
+        <!--edit-->
+        <%#= form_tag post_path(@post.id), method: 'patch' do %>
+        <%#= text_field_tag 'title', @post.title %>
+        <%#= text_area_tag 'content', @post.content %>
+        <%#= submit_tag 'Submit!' %>
+        <%# end %>
+        
+        
+        
+        <p> DATE&nbsp;&nbsp;:&nbsp;&nbsp;
+            <%= date_field_tag 'input_date', nil %>
+            
+        </p> PHOTO&nbsp;:&nbsp;
+        
+             <%= file_field_tag 'image', accept: 'image/*'  %>
+            <br> <br>
+        
+        <p> Comment</p>    
+        <p>
+          <%= text_area_tag 'content', @post.content, style: "width: 100%", rows: 5 %>
+        </p>
+        <hr>
+        <p> OUTER :
+          <%= text_field_tag 'outer', @post.outer, style: "width: 33%" %>
+        </p>
+        <p> TOP   :
+          <%= text_field_tag 'top', @post.top, style: "width: 33%" %>
+        </p>
+        <p> BOTTOM :
+          <%= text_field_tag 'bottom', @post.bottom, style: "width: 33%" %>
+        </p>
+        <p> DRESS  :
+          <%= text_field_tag 'dress', @post.dress, style: "width: 33%" %>
+        </p>
+        <p> ETC    :
+          <%= text_field_tag 'etc', @post.etc, style: "width: 33%" %>
+        </p>
+        <p><%= check_box_tag(:show_attribute) %>
+                    <%= label_tag(:show_attribute, "공개할거임?") %></p>
+        <%= submit_tag '수정하기'%>
+    <% end %>
+</div>

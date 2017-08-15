@@ -50,6 +50,8 @@
       </div>
     </div>
     <br>
+    
+    
 
     <!-- 나중에는 루비 반복문으로 돌려야함 -->
     <!--<div class="row mb-5 no-gutters">-->
@@ -126,7 +128,20 @@
     <!--      </div>-->
     <!--    </div>-->
     <!--</div>-->
-    
+     <div class="container">
+         <div class="row">
+            <% @posts.each do |post| %>
+            <div class="col-md-4">
+                    <div class="card">
+                       <p> <%= post.id %></p>
+                       <%= image_tag post.image.thumb.url %>
+                       <p> <%= link_to 'show', post %>  <%= link_to 'Edit', edit_post_path(post.id) %>    <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+                    </div>
+            </div>
+           <% end %>
+        </div>
+    </div>
+
     <!-- 글 작성  -->
     <!-- Modal -->
     <div class="modal fade" id="layerpop" >
@@ -155,7 +170,7 @@
                 <%= file_field_tag 'image', accept: 'image/*' %><br> <br>
             <p> Comment</p>    
             <p>
-              <%= text_area_tag 'input_content', nil, style: "width: 100%", rows: 5 %>
+              <%= text_area_tag 'content', nil, style: "width: 100%", rows: 5 %>
             </p>
             <hr>
             <p> OUTER :
@@ -174,11 +189,13 @@
               <%= text_field_tag 'etc', nil, style: "width: 33%" %>
             </p>
             <p><%= check_box_tag(:show_attribute) %>
-                        <%= label_tag(:show_attribute, "공개할거임?") %></p>
+               <%= label_tag(:show_attribute, "공개할거임?") %></p> 
+            
         </div>
         <!-- Footer -->
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary" data-dismiss="modal"> Upload </button>
+          <%= submit_tag 'Upload' %>
+          <!--<button type="submit" class="btn btn-primary" data-dismiss="modal"> Upload </button>-->
           <% end %>
         </div>
       </div>

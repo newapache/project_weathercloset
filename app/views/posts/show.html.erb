@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row">
     <div class="col-6">
-        <img class="show-img" src="/assets/photo1.jpg" alt="업로드 사진" >
+        <img class="show-img" src="<%= @post.image.url %>" alt="업로드 사진" >
     </div>
     <div class="col-6">
     <div class="row">
@@ -22,11 +22,18 @@
             <span class="small mb-1">팔로우 수 :  </span>
             <span class="small mb-1">거주지역 : </span>
             <span class="small mb-1">스타일 : </span>
+            <span class="mb-1"><p><%= current_user.email %></p></span>
     </div>
     </div>
     
+    <p><%= @post.content %></p>
+    <p>outer :<%= @post.outer %> </p>
+    <p>top : <%= @post.top %></p>
+    <p>dress : <%= @post.dress %></p>
+    <p>etc : <%= @post.etc %></p>
+    
     <div class="edit justify-content-end">
-    <!--글 수정 버튼-->
+    <%= link_to 'Edit', edit_post_path %>    <%= link_to 'Destroy', post_path, method: :delete, data: { confirm: 'Are you sure?' } %>
         <i class="fa fa-pencil-square-o fa-3x" aria-hidden="true"></i>
     </div>
     <!--업로드할때 작성한 내용 출력-->
