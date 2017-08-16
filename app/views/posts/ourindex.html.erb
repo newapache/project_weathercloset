@@ -19,130 +19,168 @@
             </div>
       </div>
       
-      <div class="row mb-5 no-gutters">
-      <div class="col-4 clst">
-        <img class="upload-img" src="/assets/photo1.jpg" alt="업로드 사진" >
-        <div class="overlay">
-          <div class="text justify-content-center">
-            <i class="like fa fa-heart"></i>
-            <i class="comment fa fa-commenting-o"></i>
+      <% @posts.each do |post| %>
+      <% if post.show_attribute == true %>
+        
+        <div class="row mb-5 no-gutters">
+          
+          <div class="col-4 clst">
+            <% if post.image.url.nil? %>
+             <%= image_tag("logo_.png") %>
+           <% else %>
+             <%= image_tag post.image.url, :class => "upload-img"%>
+           <% end %>
+          <!--<img class="upload-img" src="" alt="업로드 사진" >-->
+            <div class="overlay">
+              <div class="text justify-content-center">
+                <i class="like fa fa-heart"></i>
+                <i class="comment fa fa-commenting-o"></i>
+              <% if current_user.is_like?(post) %>
+                    <%= link_to "좋아요 취소", post_like_path(post), method: "post" %>
+              <% else %>
+                  <%= link_to "좋아요", post_like_path(post), method: "post" %>
+              <% end %>
+              </div>
+            </div>
+            <div class="row mt-2 justify-content-center">
+              <% if post.likes.size == 0 %>
+              <p><%= post.likes.size %> 명이 좋아합니다.</p>
+              <% else %>
+              <p><%= post.likes_count %> 명이 좋아합니다.</p>
+              <% end %>
+              <i class="heart fa fa-heart-o fa-2x"></i>
+              <i class="star fa fa-star-o fa-2x"></i>
+            </div>
           </div>
         </div>
-        <div class="row mt-2 justify-content-center">
-          <i class="heart fa fa-heart-o fa-2x"></i>
-          <i class="star fa fa-star-o fa-2x"></i>
-        </div>
-      </div>
-      <div class="col-4 clst">
-        <img class="upload-img" src="/assets/photo2.jpg" alt="업로드 사진" >
-        <div class="overlay">
-          <div class="text justify-content-center">
-            <i class="like fa fa-heart"></i>
-            <i class="comment fa fa-commenting-o"></i>
-          </div>
-        </div>
-        <div class="row mt-2 justify-content-center">
-          <i class="heart fa fa-heart-o fa-2x"></i>
-          <i class="star fa fa-star-o fa-2x"></i>
-        </div>
-      </div>
-      <div class="col-4 clst">
-        <img class="upload-img" src="/assets/photo3.jpg" alt="업로드 사진" >
-        <div class="overlay">
-         <div class="text justify-content-center">
-            <i class="like fa fa-heart"></i>
-            <i class="comment fa fa-commenting-o"></i>
-          </div>
-        </div>
-        <div class="row mt-2 justify-content-center">
-          <i class="heart fa fa-heart-o fa-2x"></i>
-          <i class="star fa fa-star-o fa-2x"></i>
-        </div>
-      </div>
-    </div>
-    <div class="row mb-5 no-gutters">
-      <div class="col-4 clst">
-        <img class="upload-img" src="/assets/photo7.jpg" alt="업로드 사진" >
-        <div class="overlay">
-          <div class="text justify-content-center">
-            <i class="like fa fa-heart"></i>
-            <i class="comment fa fa-commenting-o"></i>
-          </div>
-        </div>
-        <div class="row mt-2 justify-content-center">
-          <i class="heart fa fa-heart-o fa-2x"></i>
-          <i class="star fa fa-star-o fa-2x"></i>
-        </div>
-      </div>
-      <div class="col-4 clst">
-        <img class="upload-img" src="/assets/photo8.jpg" alt="업로드 사진" >
-        <div class="overlay">
-          <div class="text justify-content-center">
-            <i class="like fa fa-heart"></i>
-            <i class="comment fa fa-commenting-o"></i>
-          </div>
-        </div>
-        <div class="row mt-2 justify-content-center">
-          <i class="heart fa fa-heart-o fa-2x"></i>
-          <i class="star fa fa-star-o fa-2x"></i>
-        </div>
-      </div>
-      <div class="col-4 clst">
-        <img class="upload-img" src="/assets/photo9.jpg" alt="업로드 사진" >
-        <div class="overlay">
-          <div class="text justify-content-center">
-            <i class="like fa fa-heart"></i>
-            <i class="comment fa fa-commenting-o"></i>
-          </div>
-        </div>
-        <div class="row mt-2 justify-content-center">
-          <i class="heart fa fa-heart-o fa-2x"></i>
-          <i class="star fa fa-star-o fa-2x"></i>
-        </div>
-      </div>
-    </div>    
-    <div class="row mb-5 no-gutters">
-      <div class="col-4 clst">
-        <img class="upload-img" src="/assets/photo10.jpg" alt="업로드 사진" >
-        <div class="overlay">
-          <div class="text justify-content-center">
-            <i class="like fa fa-heart"></i>
-            <i class="comment fa fa-commenting-o"></i>
-          </div>
-        </div>
-        <div class="row mt-2 justify-content-center">
-          <i class="heart fa fa-heart-o fa-2x"></i>
-          <i class="star fa fa-star-o fa-2x"></i>
-        </div>
-      </div>
-      <div class="col-4 clst">
-        <img class="upload-img" src="/assets/photo11.jpg" alt="업로드 사진" >
-        <div class="overlay">
-         <div class="text justify-content-center">
-            <i class="like fa fa-heart"></i>
-            <i class="comment fa fa-commenting-o"></i>
-          </div>
-        </div>
-        <div class="row mt-2 justify-content-center">
-          <i class="heart fa fa-heart-o fa-2x"></i>
-          <i class="star fa fa-star-o fa-2x"></i>
-        </div>
-      </div>
-      <div class="col-4 clst">
-        <img class="upload-img" src="/assets/photo12.jpg" alt="업로드 사진" >
-        <div class="overlay">
-          <div class="text justify-content-center">
-            <i class="like fa fa-heart"></i>
-            <i class="comment fa fa-commenting-o"></i>
-          </div>
-        </div>
-        <div class="row mt-2 justify-content-center">
-          <i class="heart fa fa-heart-o fa-2x"></i>
-          <i class="star fa fa-star-o fa-2x"></i>
-        </div>
-      </div>
-    </div>
-  </div>
+        <% end %>
+        <% end %>
+      
+  <!--    <div class="row mb-5 no-gutters">-->
+  <!--    <div class="col-4 clst">-->
+  <!--      <img class="upload-img" src="/assets/photo1.jpg" alt="업로드 사진" >-->
+  <!--      <div class="overlay">-->
+  <!--        <div class="text justify-content-center">-->
+  <!--          <i class="like fa fa-heart"></i>-->
+  <!--          <i class="comment fa fa-commenting-o"></i>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--      <div class="row mt-2 justify-content-center">-->
+  <!--        <i class="heart fa fa-heart-o fa-2x"></i>-->
+  <!--        <i class="star fa fa-star-o fa-2x"></i>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--    <div class="col-4 clst">-->
+  <!--      <img class="upload-img" src="/assets/photo2.jpg" alt="업로드 사진" >-->
+  <!--      <div class="overlay">-->
+  <!--        <div class="text justify-content-center">-->
+  <!--          <i class="like fa fa-heart"></i>-->
+  <!--          <i class="comment fa fa-commenting-o"></i>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--      <div class="row mt-2 justify-content-center">-->
+  <!--        <i class="heart fa fa-heart-o fa-2x"></i>-->
+  <!--        <i class="star fa fa-star-o fa-2x"></i>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--    <div class="col-4 clst">-->
+  <!--      <img class="upload-img" src="/assets/photo3.jpg" alt="업로드 사진" >-->
+  <!--      <div class="overlay">-->
+  <!--       <div class="text justify-content-center">-->
+  <!--          <i class="like fa fa-heart"></i>-->
+  <!--          <i class="comment fa fa-commenting-o"></i>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--      <div class="row mt-2 justify-content-center">-->
+  <!--        <i class="heart fa fa-heart-o fa-2x"></i>-->
+  <!--        <i class="star fa fa-star-o fa-2x"></i>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </div>-->
+    
+  <!--  <div class="row mb-5 no-gutters">-->
+  <!--    <div class="col-4 clst">-->
+  <!--      <img class="upload-img" src="/assets/photo7.jpg" alt="업로드 사진" >-->
+  <!--      <div class="overlay">-->
+  <!--        <div class="text justify-content-center">-->
+  <!--          <i class="like fa fa-heart"></i>-->
+  <!--          <i class="comment fa fa-commenting-o"></i>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--      <div class="row mt-2 justify-content-center">-->
+  <!--        <i class="heart fa fa-heart-o fa-2x"></i>-->
+  <!--        <i class="star fa fa-star-o fa-2x"></i>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--    <div class="col-4 clst">-->
+  <!--      <img class="upload-img" src="/assets/photo8.jpg" alt="업로드 사진" >-->
+  <!--      <div class="overlay">-->
+  <!--        <div class="text justify-content-center">-->
+  <!--          <i class="like fa fa-heart"></i>-->
+  <!--          <i class="comment fa fa-commenting-o"></i>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--      <div class="row mt-2 justify-content-center">-->
+  <!--        <i class="heart fa fa-heart-o fa-2x"></i>-->
+  <!--        <i class="star fa fa-star-o fa-2x"></i>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--    <div class="col-4 clst">-->
+  <!--      <img class="upload-img" src="/assets/photo9.jpg" alt="업로드 사진" >-->
+  <!--      <div class="overlay">-->
+  <!--        <div class="text justify-content-center">-->
+  <!--          <i class="like fa fa-heart"></i>-->
+  <!--          <i class="comment fa fa-commenting-o"></i>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--      <div class="row mt-2 justify-content-center">-->
+  <!--        <i class="heart fa fa-heart-o fa-2x"></i>-->
+  <!--        <i class="star fa fa-star-o fa-2x"></i>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </div>    -->
+  <!--  <div class="row mb-5 no-gutters">-->
+  <!--    <div class="col-4 clst">-->
+  <!--      <img class="upload-img" src="/assets/photo10.jpg" alt="업로드 사진" >-->
+  <!--      <div class="overlay">-->
+  <!--        <div class="text justify-content-center">-->
+  <!--          <i class="like fa fa-heart"></i>-->
+  <!--          <i class="comment fa fa-commenting-o"></i>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--      <div class="row mt-2 justify-content-center">-->
+  <!--        <i class="heart fa fa-heart-o fa-2x"></i>-->
+  <!--        <i class="star fa fa-star-o fa-2x"></i>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--    <div class="col-4 clst">-->
+  <!--      <img class="upload-img" src="/assets/photo11.jpg" alt="업로드 사진" >-->
+  <!--      <div class="overlay">-->
+  <!--       <div class="text justify-content-center">-->
+  <!--          <i class="like fa fa-heart"></i>-->
+  <!--          <i class="comment fa fa-commenting-o"></i>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--      <div class="row mt-2 justify-content-center">-->
+  <!--        <i class="heart fa fa-heart-o fa-2x"></i>-->
+  <!--        <i class="star fa fa-star-o fa-2x"></i>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--    <div class="col-4 clst">-->
+  <!--      <img class="upload-img" src="/assets/photo12.jpg" alt="업로드 사진" >-->
+  <!--      <div class="overlay">-->
+  <!--        <div class="text justify-content-center">-->
+  <!--          <i class="like fa fa-heart"></i>-->
+  <!--          <i class="comment fa fa-commenting-o"></i>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--      <div class="row mt-2 justify-content-center">-->
+  <!--        <i class="heart fa fa-heart-o fa-2x"></i>-->
+  <!--        <i class="star fa fa-star-o fa-2x"></i>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </div>-->
+  <!--</div>-->
         
   </div>
   <script>

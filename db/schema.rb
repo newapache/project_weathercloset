@@ -13,9 +13,35 @@
 
 ActiveRecord::Schema.define(version: 20170816111856) do
 
-  create_table "posts", force: :cascade do |t|
+  create_table "comments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.text     "content"
+    t.string   "image"
+    t.string   "date_value"
+    t.string   "outer"
+    t.string   "top"
+    t.string   "bottom"
+    t.string   "dress"
+    t.string   "etc"
+    t.boolean  "show_attribute", default: false
+    t.integer  "likes_count"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   create_table "users", force: :cascade do |t|
