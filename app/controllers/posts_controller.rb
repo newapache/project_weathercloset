@@ -13,7 +13,9 @@ class PostsController < ApplicationController
   
   def create
     new_post = Post.new(user_id: current_user.id, content: params[:content], outer: params[:outer], top: params[:top], bottom: params[:bottom], dress: params[:dress], etc: params[:etc])
+
     new_post.image = params[:image]
+
     privacy = params[:show_attribute]
     
     if privacy == "1"

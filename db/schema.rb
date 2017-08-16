@@ -24,9 +24,8 @@ ActiveRecord::Schema.define(version: 20170813055659) do
   create_table "likes", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "post_id"
-    t.integer  "likes_count"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "logins", force: :cascade do |t|
@@ -47,6 +46,7 @@ ActiveRecord::Schema.define(version: 20170813055659) do
     t.string   "dress"
     t.string   "etc"
     t.boolean  "show_attribute", default: false
+    t.integer  "likes_count"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
   end

@@ -7,7 +7,6 @@ devise_for :users
 
   get 'posts/ourindex'
   
-  resources 'posts'
   
   # resources :posts, except: [:show]
   post '/posts/create' => 'posts#create' 
@@ -19,4 +18,8 @@ devise_for :users
   get 'home/index'
   get 'home/weather'
   get 'home/setting'
+  
+  resources 'posts' do
+    post "/like", to: "likes#like_toggle"
+  end
 end

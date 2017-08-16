@@ -131,13 +131,18 @@
      <div class="container">
          <div class="row">
             <% @posts.each do |post| %>
-            <div class="col-md-4">
-                    <div class="card">
-                       <p> <%= post.id %></p>
-                       <%= image_tag post.image.thumb.url %>
-                       <p> <%= link_to 'show', post %>  <%= link_to 'Edit', edit_post_path(post.id) %>    <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-                    </div>
-            </div>
+            
+              <div class="col-md-4">
+                      <div class="card">
+                         <p> <%= post.id %></p>
+                         <% if post.image.url.nil? %>
+                           <%= image_tag("logo_.png") %>
+                         <% else %>
+                         <%= image_tag post.image.url, :class => "upload-img"%>
+                         <% end %>
+                         <p> <%= link_to 'show', post %>  <%= link_to 'Edit', edit_post_path(post.id) %>    <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+                      </div>
+              </div>
            <% end %>
         </div>
     </div>
