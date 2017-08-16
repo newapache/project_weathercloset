@@ -1,0 +1,22 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+@import "devise_bootstrap_views";
+
+.welcome{
+    width: 100%;
+    height: 100%;
+}
+
+.panel{
+    width: 50%;
+}
+
+.editor{
+    margin-top: 150px;    
+}
+
+.logoimg{
+    width : 40px;
+    height : 40px;
+}

@@ -30,21 +30,46 @@
               <li class="nav-item">
                 <a class="nav-link" href="/" lang="en">Home<span class="sr-only">(현재 페이지)</span></a>
               </li>
+              <% if user_signed_in?  %> 
               <li class="nav-item">
                 <a class="nav-link" href="/home/weather" lang="en">Weather</a>
               </li>
+              <% else #로그인을안했으면 %>
+              	<li class="nav-item">
+                <a class="nav-link" href="#" lang="en">Weather</a>
+              </li>
+              <% end %>
+              
+              <% if user_signed_in? #로그인을 했으면 %>
               <li class="nav-item">
                 <a class="nav-link" href="/posts/myindex" lang="en">My</a>
               </li>
+              <% else #로그인을안했으면 %>
+              	<li class="nav-item">
+                <a class="nav-link" href="#" lang="en">My</a>
+              </li>
+              <% end %>
+              
+              <% if user_signed_in? #로그인을 했으면 %>
               <li class="nav-item">
                 <a class="nav-link" href="/posts/ourindex" lang="en">Our</a>
               </li>
-               <li class="nav-item">
-                <a class="nav-link" href="/home/setting" lang="en">Setting</a>
+              <% else #로그인을안했으면 %>
+              	<li class="nav-item">
+                <a class="nav-link" href="#" lang="en">Our</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/user_infos/sign_in">Login/Join</a>
-              </li>
+              <% end %>
+      
+              <% if user_signed_in? #로그인을 했으면 %>
+                <li> 
+                <a class="nav-link" href="/users/edit">
+                  <%= current_user.name %>
+                  </a>
+                  </li>
+              	<li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>	
+              <% else #로그인을안했으면 %>
+              	<li><%= link_to 'Log in/Join', new_user_session_path %></li>
+              <% end %>
             </ul>
           </div>
           </div>
