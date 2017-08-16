@@ -168,21 +168,30 @@
     <th colspan="2">Outer</th>
     <th colspan="2">TOP</th>
     <th colspan="2">Bottom</th>
-    <th colspan="2">Dress</th>
+    <th colspan="2">shoe</th>
 
     </tr>
     </thead>
     <tbody>
+    
+    <!-------- 프론트가 해주겠지?----^o^♥ (줄이 안 맞아요ㅠ0ㅠ어흑흑)  --->
+    <!-- 하루종일 가능(조건X) -->
+    <% [@outer_O, @top_O, @bottom_O, @shoe_O].each do |oo, to, bo, so| %>
     <tr>
-    <th scope="row">블루종</th>
-    <td>불가</td>
-    <td>후드</td>
-    <td>불가</td>
-    <td>청치마</td>
-    <td>가능</td>
-    <td>원피스</td>
-    <td>가능</td>
+      <td><%= oo %></td>
+      <td>가능</td>
+      <td><%= to %></td>
+      <td>가능</td>
+      <td><%= bo %></td>
+      <td>가능</td>
+      <td><%= so %></td>
+      <td>가능</td>
     </tr>
+    <% end %>
+    
+    <!-- 아침/밤 or 낮 에만 가능 -->
+    
+    
     <tr>
     <th scope="row">과잠</th>
     <td>불가</td>
@@ -213,4 +222,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 </body>
+
+
+
 </html>
