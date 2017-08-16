@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'chartkick'
 gem 'groupdate'
 
-gem 'devise'
+
 gem 'forecast_io'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'

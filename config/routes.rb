@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  #devise gem 사용
-  devise_for :user_infos
  
   
   
