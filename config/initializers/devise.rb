@@ -107,8 +107,6 @@ Devise.setup do |config|
   # a value of 20 is already extremely slow: approx. 60 seconds for 1 calculation).
   config.stretches = Rails.env.test? ? 1 : 11
 
-  # Set up a pepper to generate the hashed password.
-  # config.pepper = '671cf502aa63d0839569b18c170e4e0fef8008efd1c482a7b64edbf5d6311ad1621e393c49bc4837163d36c3a97ac8a21312ba41951bb3af7e976167503918bc'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
