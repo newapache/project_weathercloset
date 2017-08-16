@@ -2,7 +2,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
       t.string :name
-      # t.string :region #사용자 지역 
+      t.string :region #사용자 지역 
       # t.string :avatar #프로필사진 이미지(s3 이미지링크주소 저장하면될듯??)
       
       ## Database authenticatable

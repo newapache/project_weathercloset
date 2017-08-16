@@ -3,9 +3,7 @@
     <link rel="stylesheet" href="css/mypage.css" >
     <title>My Closet</title>
   </head>
-  
   <body>
-  <% if user_signed_in? %>
     <div class="container">
       <!--Profile-->
       <!-- user info -->
@@ -21,11 +19,6 @@
                   <i class="fa fa-cog" aria-hidden="true"></i></a>
             </span>
             <span class="small mb-1 font-weight-light">거주지역 : </span>
-            <span class="mb-1"><%= current_user.email %>
-                <a class="ml-1" href="">
-                  <img src="" style="width: 15px; height: 15px"></a>
-            </span>
-            <span class="small mb-1 font-weight-light">거주지역 : <%= current_user.region %></span>
             <span class="small mb-1">스타일 : </span>
           </div>
         </div>
@@ -51,15 +44,25 @@
     <br>
     
     
-
     <!-- 나중에는 루비 반복문으로 돌려야함 -->
+    <div class="row mb-5 no-gutters">
+            <% @posts.each do |post| %>
+              <div class="col-4 clst">
+                      
+                         <p> <%= post.id %></p>
+                         <% if post.image.url.nil? %>
+                           <%= image_tag("logo_.png") %>
+                         <% else %>
+                         <%= image_tag post.image.url, :class => "upload-img"%>
+                         <% end %>
+                         <p> <%= link_to 'show', post %>  <%= link_to 'Edit', edit_post_path(post.id) %>    <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+                      
+              </div>
+           <% end %>
+        </div>
     <!--<div class="row mb-5 no-gutters">-->
     <!--  <div class="col-4 clst">-->
     <!--    <a href = "/posts/show">-->
-
-    
-    <!--<div class="row mb-5">-->
-    <!--  <div class="col-4">-->
     <!--    <img class="upload-img" src="/assets/photo1.jpg" alt="업로드 사진" >-->
     <!--    <div class="overlay">-->
     <!--      <div class="text justify-content-center">-->
@@ -86,66 +89,38 @@
     <!--        <i class="comment fa fa-commenting-o"></i>-->
     <!--      </div>-->
     <!--  </div>-->
-      
-    <!--  <div class="col-4">-->
-    <!--    <img class="upload-img" src="/assets/photo1.jpg" alt="업로드 사진" >-->
-    <!--  </div>-->
-    <!--  <div class="col-4">-->
-    <!--    <img class="upload-img" src="/assets/photo2.jpg" alt="업로드 사진" >-->
-    <!--  </div>-->
-    <!--  <div class="col-4">-->
-    <!--    <img class="upload-img" src="/assets/photo3.jpg" alt="업로드 사진" >-->
-    <!--  </div>-->
     <!--</div>-->
     <!--</div>-->
     <!--<div class="row mb-5 no-gutters">-->
-    <!--    <div class="col-4 clst">-->
-    <!--      <img class="upload-img" src="/assets/photo4.jpg" alt="업로드 사진" >-->
-    <!--      <div class="overlay">-->
-    <!--        <div class="text justify-content-center">-->
-    <!--          <i class="like fa fa-heart"></i>-->
-    <!--          <i class="comment fa fa-commenting-o"></i>-->
-    <!--        </div>-->
-    <!--    </div>-->
-    <!--    </div>-->
-    <!--    <div class="col-4 clst">-->
-    <!--      <img class="upload-img" src="/assets/photo5.jpg" alt="업로드 사진" >-->
-    <!--      <div class="overlay">-->
-    <!--        <div class="text justify-content-center">-->
-    <!--          <i class="like fa fa-heart"></i>-->
-    <!--          <i class="comment fa fa-commenting-o"></i>-->
-    <!--        </div>-->
-    <!--    </div>-->
-    <!--    </div>-->
-    <!--    <div class="col-4 clst">-->
-    <!--      <img class="upload-img" src="/assets/photo6.jpg" alt="업로드 사진" >-->
-    <!--      <div class="overlay">-->
-    <!--        <div class="text justify-content-center">-->
-    <!--          <i class="like fa fa-heart"></i>-->
-    <!--          <i class="comment fa fa-commenting-o"></i>-->
-    <!--        </div>-->
+    <!--  <div class="col-4 clst">-->
+    <!--    <img class="upload-img" src="/assets/photo4.jpg" alt="업로드 사진" >-->
+    <!--    <div class="overlay">-->
+    <!--      <div class="text justify-content-center">-->
+    <!--        <i class="like fa fa-heart"></i>-->
+    <!--        <i class="comment fa fa-commenting-o"></i>-->
     <!--      </div>-->
-    <!--    </div>-->
+    <!--  </div>-->
+    <!--  </div>-->
+    <!--  <div class="col-4 clst">-->
+    <!--    <img class="upload-img" src="/assets/photo5.jpg" alt="업로드 사진" >-->
+    <!--    <div class="overlay">-->
+    <!--      <div class="text justify-content-center">-->
+    <!--        <i class="like fa fa-heart"></i>-->
+    <!--        <i class="comment fa fa-commenting-o"></i>-->
+    <!--      </div>-->
+    <!--  </div>-->
+    <!--  </div>-->
+    <!--  <div class="col-4 clst">-->
+    <!--    <img class="upload-img" src="/assets/photo6.jpg" alt="업로드 사진" >-->
+    <!--    <div class="overlay">-->
+    <!--      <div class="text justify-content-center">-->
+    <!--        <i class="like fa fa-heart"></i>-->
+    <!--        <i class="comment fa fa-commenting-o"></i>-->
+    <!--      </div>-->
+    <!--  </div>-->
     <!--</div>-->
-     <div class="container">
-         <div class="row">
-            <% @posts.each do |post| %>
-            
-              <div class="col-md-4">
-                      <div class="card">
-                         <p> <%= post.id %></p>
-                         <% if post.image.url.nil? %>
-                           <%= image_tag("logo_.png") %>
-                         <% else %>
-                         <%= image_tag post.image.url, :class => "upload-img"%>
-                         <% end %>
-                         <p> <%= link_to 'show', post %>  <%= link_to 'Edit', edit_post_path(post.id) %>    <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-                      </div>
-              </div>
-           <% end %>
-        </div>
-    </div>
-
+    <!--</div>-->
+    
     <!-- 글 작성  -->
     <!-- Modal -->
     <div class="modal fade" id="layerpop" >
@@ -174,7 +149,7 @@
                 <%= file_field_tag 'image', accept: 'image/*' %><br> <br>
             <p> Comment</p>    
             <p>
-              <%= text_area_tag 'content', nil, style: "width: 100%", rows: 5 %>
+              <%= text_area_tag 'input_content', nil, style: "width: 100%", rows: 5 %>
             </p>
             <hr>
             <p> OUTER :
@@ -192,22 +167,18 @@
             <p> ETC    :
               <%= text_field_tag 'etc', nil, style: "width: 33%" %>
             </p>
-            <p><%= check_box_tag(:show_attribute) %>
-               <%= label_tag(:show_attribute, "공개할거임?") %></p> 
-            
+            <p></p>
         </div>
         <!-- Footer -->
         <div class="modal-footer">
-          <%= submit_tag 'Upload' %>
-          <!--<button type="submit" class="btn btn-primary" data-dismiss="modal"> Upload </button>-->
+          <button type="submit" class="btn btn-primary" data-dismiss="modal"> Upload </button>
           <% end %>
         </div>
       </div>
     </div>
     
-  <% else %>
-    <p>로그인하라는 페이지</p>
-  <% end %>
+    
+
   </div>
   
   
