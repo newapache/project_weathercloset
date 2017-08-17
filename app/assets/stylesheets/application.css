@@ -31,18 +31,25 @@
  *= require_tree .
  
  */
+ /*@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);*/
+ @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
  
-html{
-	font-size: 15px;
-	line-height: 1.6;
+/*html{*/
+	
+/*}*/
+
+* {
+    /*font-family: 'Nanum Gothic', sans-serif;*/
+    font-family: 'Nanum Pen Script', cursive;
+    font-size: 22px;
+	color: #181818;
+	line-height: 2;
 	box-sizing: border-box;
 }
 
-* {
-	font-family: "Calisto MT","Bookman Old Style",Bookman,"Goudy Old Style",Garamond,"Hoefler Text","Bitstream Charter",Georgia,serif;
-	color: #181818;
-}
-
+/*.navbar{*/
+/*    font-family: "Calisto MT","Bookman Old Style",Bookman,"Goudy Old Style",Garamond,"Hoefler Text","Bitstream Charter",Georgia,serif;*/
+/*}*/
 
 .navline{
     margin-top: 2px;
@@ -53,11 +60,16 @@ a.nav-link:hover, a.nav-link:active{
     border-bottom: solid 2px; 
     color : blue;
 }
-.logoimg{
-    width : 40px;
-    height : 40px;
-}
+/*.logoimg{*/
+/*    width:auto;*/
+/*    height:auto;*/
+/*}*/
 
+ .header{
+    display:flex;
+    justify-content:center;
+       }
+        
 /*login btn hover 해제하기*/
 a.nav-link:last-child:hover{
     border-bottom:#fff;

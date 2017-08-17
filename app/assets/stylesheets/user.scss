@@ -3,6 +3,25 @@
 
 @import "devise_bootstrap_views";
 
+.navline{
+    margin-top: 2px;
+    border-bottom: 1px solid; color:gray; 
+}
+
+a.nav-link:hover, a.nav-link:active{  
+    border-bottom: solid 2px; 
+    color : blue;
+}
+/*.logoimg{*/
+/*    width:auto;*/
+/*    height:auto;*/
+/*}*/
+
+.header{
+    display:flex;
+    // justify-content:center;
+       }
+
 .welcome{
     width: 100%;
     height: 100%;
@@ -14,9 +33,4 @@
 
 .editor{
     margin-top: 150px;    
-}
-
-.logoimg{
-    width : 40px;
-    height : 40px;
 }
