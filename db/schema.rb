@@ -13,18 +13,31 @@
 
 ActiveRecord::Schema.define(version: 20170816111856) do
 
+<<<<<<< HEAD
   create_table "logins", force: :cascade do |t|
     t.string   "title"
+=======
+  create_table "comments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+>>>>>>> fbf3815c2b82cae24dcb6fcb317d0800ae991727
     t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+<<<<<<< HEAD
   create_table "posts", force: :cascade do |t|
+=======
+  create_table "likes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+>>>>>>> fbf3815c2b82cae24dcb6fcb317d0800ae991727
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+<<<<<<< HEAD
   create_table "user_infos", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -43,8 +56,27 @@ ActiveRecord::Schema.define(version: 20170816111856) do
   add_index "user_infos", ["email"], name: "index_user_infos_on_email", unique: true
   add_index "user_infos", ["reset_password_token"], name: "index_user_infos_on_reset_password_token", unique: true
 
+=======
+  create_table "posts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.text     "content"
+    t.string   "image"
+    t.string   "date_value"
+    t.string   "outer"
+    t.string   "top"
+    t.string   "bottom"
+    t.string   "dress"
+    t.string   "etc"
+    t.boolean  "show_attribute", default: false
+    t.integer  "likes_count"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+>>>>>>> fbf3815c2b82cae24dcb6fcb317d0800ae991727
   create_table "users", force: :cascade do |t|
     t.string   "name"
+    t.string   "region"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"

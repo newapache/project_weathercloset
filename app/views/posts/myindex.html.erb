@@ -33,76 +33,42 @@
           </div>
     </div>
     
-     
-    <div class="row">
-      <div class="col-11"></div>
-      <div class="col-1">
+   <div class="row justify-content-end">
+      <!--<div class="col-sm-11"></div>-->
+      <div class="col-2">
           <!-- Button trigger modal -->
           <button class="btn btn-outline-primary" data-target="#layerpop" data-toggle="modal">Upload</button>
       </div>
     </div>
     <br>
-    <!-- 나중에는 루비 반복문으로 돌려야함 -->
+    
+    
+     <!--나중에는 루비 반복문으로 돌려야함 -->
     <div class="row mb-5 no-gutters">
-      <div class="col-4 clst">
-        <a href = "/posts/show">
-        <img class="upload-img" src="/assets/photo1.jpg" alt="업로드 사진" >
-        <div class="overlay">
-          <div class="text justify-content-center">
-            <i class="like fa fa-heart"></i>
-            <i class="comment fa fa-commenting-o"></i>
+        <% @posts.each do |post| %>
+          <div class="col-sm-4 clst">
+                  
+                     <p> <%= post.id %></p>
+                     <% if post.image.url.nil? %>
+                       <%= image_tag("logo_.png") %>
+                     <% else %>
+                       <a href = "/posts/show">
+                     <%= image_tag post.image.url, :class => "upload-img"%>
+                     <div class="overlay">
+                      <div class="text justify-content-center">
+                        <i class="like fa fa-heart"></i>
+                        <i class="comment fa fa-commenting-o"></i>
+                      </div>
+                      </div>
+                      </a>
+                     <% end %>
+                     <p> <%= link_to 'Edit', edit_post_path(post.id) %>    <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+                  
           </div>
-      </div>
-      </a>
-      </div>
-      <div class="col-4 clst">
-        <img class="upload-img" src="/assets/photo2.jpg" alt="업로드 사진" >
-        <div class="overlay">
-          <div class="text justify-content-center">
-            <i class="like fa fa-heart"></i>
-            <i class="comment fa fa-commenting-o"></i>
-          </div>
-      </div>
-      </div>
-      <div class="col-4 clst">
-        <img class="upload-img" src="/assets/photo3.jpg" alt="업로드 사진" >
-        <div class="overlay">
-          <div class="text justify-content-center">
-            <i class="like fa fa-heart"></i>
-            <i class="comment fa fa-commenting-o"></i>
-          </div>
-      </div>
+       <% end %>
     </div>
-    </div>
-    <div class="row mb-5 no-gutters">
-      <div class="col-4 clst">
-        <img class="upload-img" src="/assets/photo4.jpg" alt="업로드 사진" >
-        <div class="overlay">
-          <div class="text justify-content-center">
-            <i class="like fa fa-heart"></i>
-            <i class="comment fa fa-commenting-o"></i>
-          </div>
-      </div>
-      </div>
-      <div class="col-4 clst">
-        <img class="upload-img" src="/assets/photo5.jpg" alt="업로드 사진" >
-        <div class="overlay">
-          <div class="text justify-content-center">
-            <i class="like fa fa-heart"></i>
-            <i class="comment fa fa-commenting-o"></i>
-          </div>
-      </div>
-      </div>
-      <div class="col-4 clst">
-        <img class="upload-img" src="/assets/photo6.jpg" alt="업로드 사진" >
-        <div class="overlay">
-          <div class="text justify-content-center">
-            <i class="like fa fa-heart"></i>
-            <i class="comment fa fa-commenting-o"></i>
-          </div>
-      </div>
-    </div>
-    </div>
+
+
     
     <!-- 글 작성  -->
     <!-- Modal -->
@@ -150,11 +116,12 @@
             <p> ETC    :
               <%= text_field_tag 'etc', nil, style: "width: 33%" %>
             </p>
-            <p></p>
+            <p><%= check_box_tag(:show_attribute) %>
+                    <%= label_tag(:show_attribute, "공개할거임?") %></p>
         </div>
         <!-- Footer -->
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary" data-dismiss="modal"> Upload </button>
+          <%= submit_tag 'Upload' %>
           <% end %>
         </div>
       </div>
