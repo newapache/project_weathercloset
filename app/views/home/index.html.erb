@@ -12,13 +12,6 @@
   <title>index.html</title>
 </head>
 <body>
-<h1>어제의 날씨를 보여줄 수 있나여?</h1>
-
-<h2>어제 : <%=@data[-1].temperatureMax.to_i %>도<br></h2>
-<h2>오늘 : <%=@currentData.temperature.to_i %>도<br></h2>
-
-
-<h2>내일 : <%=@data[1].temperatureMax.to_i %>도<br></h2>
 
 <!--아래 div는 날씨와 오늘의 코디 배치를 위해 넣었어요.-->
 <div class=" container twoarticle row mt-1 ml-auto mr-auto">
@@ -57,21 +50,21 @@
 
           <div class="col-6 row align-items-center ml-0 mr-0">
             <!-- wansoo : 현재 시각의 날씨 아이콘을 바꿔야해요! assets/ =현재 날씨  .png 이런식으로 바꿔주세요.-->
-            <div class="col-5 pl-0 pr-0"><img id="now-images" src="assets/wicon/<%=@currentData.icon%>.png" alt="now weather icon"></div>
+            <div class="col-5 pl-0 pr-0"><img id="now-images" src="/assets/wicon/<%=@currentData.icon%>.png" alt="now weather icon"></div>
 
 
 
             <!-- wansoo : <값> 괄호까지 지우시고 받아온 값 넣어주시면 됩니당~~-->
             <div class="col-7" id="now-weather">
             <!-- wansoo : 현재 시각(숫자만)을 받아와주세요! " <현재시각>시" 이렇게!!-->
-            <% if @korTime == 24 %>
+            <% if @korHour == 24 %>
               자정 
-            <% elsif @korTime == 12 %>
+            <% elsif @korHour == 12 %>
               정오
-            <% elsif @korTime > 12 %>
-              오후 <%= @korTime-12 %>시
+            <% elsif @korHour > 12 %>
+              오후 <%= @korHour-12 %>시
             <% else %>
-              오전 <%= @korTime %>시
+              오전 <%= @korHour %>시
             <% end %>
             <br>
             <!-- wansoo : 온도-->
@@ -100,14 +93,14 @@
             <div class=" main-atweather align-items-center justify-content-center row ml-0 mr-0">
             <div class="main-aletter">
               
-              <% if @korTime+1== 24 %>
+              <% if @korHour+1== 24 %>
               자정 
-              <% elsif @korTime+1 == 12 %>
+              <% elsif @korHour+1 == 12 %>
               정오
-              <% elsif @korTime+1 > 12 %>
-              오후 <%= (@korTime+1)-12 %>시
+              <% elsif @korHour+1 > 12 %>
+              오후 <%= (@korHour+1)-12 %>시
               <% else %>
-              오전 <%= @korTime+1 %>시
+              오전 <%= @korHour+1 %>시
               <% end %> 예보
               
             </div>
@@ -128,14 +121,14 @@
             <div class=" main-atweather align-items-center justify-content-center row ml-0 mr-0">
 
             <div class="main-aletter">
-              <% if @korTime+2== 24 %>
+              <% if @korHour+2== 24 %>
               자정 
-              <% elsif @korTime+2 == 12 %>
+              <% elsif @korHour+2 == 12 %>
               정오
-              <% elsif @korTime+2 > 12 %>
-              오후 <%= (@korTime+2)-12 %>시
+              <% elsif @korHour+2 > 12 %>
+              오후 <%= (@korHour+2)-12 %>시
               <% else %>
-              오전 <%= @korTime+2 %>시
+              오전 <%= @korHour+2 %>시
               <% end %> 예보
             </div>
                 <img  id="after-icon" src="assets/wicon/<%=@hourlyData[2].icon%>.png" alt="after 2hour icon">
