@@ -33,10 +33,9 @@
  */
  /*@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);*/
  @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
- 
-/*html{*/
-	
-/*}*/
+ @import "bootstrap-sprockets";
+ @import "devise_bootstrap_views";
+
 
 * {
     /*font-family: 'Nanum Gothic', sans-serif;*/
@@ -60,17 +59,25 @@ a.nav-link:hover, a.nav-link:active{
     border-bottom: solid 2px; 
     color : blue;
 }
-/*.logoimg{*/
-/*    width:auto;*/
-/*    height:auto;*/
-/*}*/
+.logoimg{
+    width: 40px;
+    height: 40px;
+
+}
+
+.logoimg img{
+    width: 100%;
+    height: auto;
+}
+
 
  .header{
     display:flex;
-    justify-content:center;
+   
        }
         
 /*login btn hover 해제하기*/
 a.nav-link:last-child:hover{
     border-bottom:#fff;
 }
+

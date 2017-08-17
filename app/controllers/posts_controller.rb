@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   def myindex
     @posts = current_user.posts.reverse #현재 사용자의 게시글을 모두 가져온다.
   end
-  
+ 
   def create
     new_post = Post.new(user_id: current_user.id, content: params[:content], outer: params[:outer], top: params[:top], bottom: params[:bottom], dress: params[:dress], etc: params[:etc])
 
@@ -27,7 +27,7 @@ class PostsController < ApplicationController
     if new_post.save
       redirect_to '/posts/myindex'
     else
-      redirect_to new_post_path
+     redirect_to '/posts/myindex'
     end
   end
 
@@ -38,9 +38,7 @@ class PostsController < ApplicationController
   def update
     #@post = Post.find_by(id: params[:id])
     redirect_to root_path if @post.user.id != current_user.id
-    
-    @post.image = params[:image] unless params[:image].nil?
-    
+    @post.image = params[:image]
     @post.update_attributes(content: params[:content], outer: params[:outer], top: params[:top], bottom: params[:bottom], dress: params[:dress], etc: params[:etc])
     privacy = params[:show_attribute]
     

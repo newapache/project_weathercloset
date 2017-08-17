@@ -1,7 +1,7 @@
   <head>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/mypage.css" >
-    <title>My Closet</title>
+    <!--<title>My Closet</title>-->
   </head>
   <body>
     <div class="container">
@@ -38,9 +38,9 @@
     </div>
     
      
-    <div class="row">
-      <div class="col-11"></div>
-      <div class="col-1">
+    <div class="row justify-content-end">
+      <!--<div class="col-sm-11"></div>-->
+      <div class="col-2">
           <!-- Button trigger modal -->
           <button class="btn btn-outline-primary" data-target="#layerpop" data-toggle="modal">Upload</button>
       </div>
@@ -48,24 +48,32 @@
     <br>
     
     
-    <!-- 나중에는 루비 반복문으로 돌려야함 -->
+     <!--나중에는 루비 반복문으로 돌려야함 -->
     <div class="row mb-5 no-gutters">
         <% @posts.each do |post| %>
-          <div class="col-4 clst">
+          <div class="col-sm-4 clst">
                   
                      <p> <%= post.id %></p>
                      <% if post.image.url.nil? %>
                        <%= image_tag("logo_.png") %>
                      <% else %>
+                       <a href = "/posts/show">
                      <%= image_tag post.image.url, :class => "upload-img"%>
+                     <div class="overlay">
+                      <div class="text justify-content-center">
+                        <i class="like fa fa-heart"></i>
+                        <i class="comment fa fa-commenting-o"></i>
+                      </div>
+                      </div>
+                      </a>
                      <% end %>
-                     <p> <%= link_to 'show', post %>  <%= link_to 'Edit', edit_post_path(post.id) %>    <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+                     <p> <%= link_to 'Edit', edit_post_path(post.id) %>    <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></p>
                   
           </div>
        <% end %>
     </div>
     <!--<div class="row mb-5 no-gutters">-->
-    <!--  <div class="col-4 clst">-->
+    <!--  <div class="col-sm-4 clst">-->
     <!--    <a href = "/posts/show">-->
     <!--    <img class="upload-img" src="/assets/photo1.jpg" alt="업로드 사진" >-->
     <!--    <div class="overlay">-->
@@ -181,8 +189,9 @@
         </div>
       </div>
     </div>
-    
-
   </div>
+  </div>
+  </body>
+  
   
   
