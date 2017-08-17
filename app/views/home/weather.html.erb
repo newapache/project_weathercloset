@@ -89,7 +89,7 @@
               <% else %>
               오전 <%= @korHour+2 %>시
               <% end %> 예보
-    </div>
+    </div class="">
         <div class="">
            <img class="after-icon col-5 pl-0 pr-0" src="/assets/wicon/<%=@hourlyData[2].icon%>.png" alt="after-2-icon"/>
             <span><%=@hourlyData[2].summary%></span>
@@ -100,7 +100,7 @@
 
 
   <!--어제, 오늘 내일의 대략적인 날씨를 보여준다.-->
-  <div class="today-weather container row ml-0 mr-0 mt-5">
+  <div class="today-weather-graph container row ml-0 mr-0 mt-4">
       
             <canvas id="myChart" width="400" height="200"></canvas>
             <script>
@@ -108,10 +108,10 @@
             var myChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ["자정", "오전 4시", "오전 8시", "정오","오후 4시", "오후 8시", "자정"],
+                    labels: [<%=@korHour-12%>, <%=@korHour-8%>, <%=@korHour-4%>, "현재 <%=@korHour%>",<%=@korHour+4%>, <%=@korHour+8%>, <%=@korHour+12%>],
                     datasets: [{
                         label: '# of Votes',
-                        data: [ 23, 19, 3, 5, 2, 3, 6],
+                        data: [ <%= @hourlyData[-12].temperature.to_i%>, <%= @hourlyData[-8].temperature.to_i%>, <%= @hourlyData[-4].temperature.to_i%>, <%= @hourlyData[0].temperature.to_i%>, <%= @hourlyData[4].temperature.to_i%>, <%= @hourlyData[8].temperature.to_i%>, <%= @hourlyData[12].temperature.to_i%>],
                         backgroundColor: [
                             'rgba(255,0,0,0)',
                             'rgba(0,0,0,0)',
@@ -158,7 +158,8 @@
     <span class="blue">날씨</span>
   </div>
 
-  <table class="tweekly offset-md-1 col-10" border="1">
+  <div class="col-12 mt-2">
+  <table class="tweekly">
     <tbody>
       <tr scope="row">
         <td class="weekly">현재 날씨
@@ -192,15 +193,16 @@
           <br>
           <span><%=@currentData.summary %></span><br>
           기온 : <span class="temper"><%=@currentData.temperature.to_i %></span>°C<br>
-          강수확률 : <span class="precipitation"><%=(@currentData.precipProbability * 100).to_i %></span>%<br>
+          강수량 : <span class="precipitation"><%= (@currentData.precipIntensity*25.4).to_i %></span>mm<br>
         </td>
 
         <td class="weekly-content">
           <!--오늘 날씨-->
           <img class="weekly-wicon mb-2" src="/assets/wicon/<%=@data[0].icon%>.png" alt="">
           <br>
-          <span>summary</span><br>
-          기온 : <span class="temper">32</span><br>
+          <span><%=@data[0].icon%></span><br>
+            <span class="temper_blue"><%=@data[0].temperatureMin.to_i %></span>°C/
+          <span class="temper_red"><%=@data[0].temperatureMax.to_i %></span>°C<br>
           강수확률 : <span class="precipitation"><%=(@data[0].precipProbability * 100).to_i%></span>%<br>
         </td>
 
@@ -209,17 +211,19 @@
            <!--내일 날씨-->
           <img class="weekly-wicon mb-2" src="/assets/wicon/<%=@data[1].icon%>.png" alt="">
           <br>
-          <span>summary</span><br>
-          기온 : <span class="temper">32</span><br>
+          <span><%=@data[1].icon%></span><br>
+            <span class="temper_blue"><%=@data[1].temperatureMin.to_i %></span>°C/
+          <span class="temper_red"><%=@data[1].temperatureMax.to_i %></span>°C<br>
           강수확률 : <span class="precipitation"><%=(@data[1].precipProbability * 100).to_i%></span>%<br>
         </td>
 
         <td class="weekly-content">
           <img class="weekly-wicon mb-2" src="/assets/wicon/<%=@data[2].icon%>.png" alt="">
           <br>
-          <span>summary</span><br>
-          최저기온 <span class="temper_blue"><%=@data[2].temperatureMin.to_i %></span>°C<br>
-          최고기온 <span class="temper_red"><%=@data[2].temperatureMax.to_i %></span>°C<br>
+          <span><%=@data[2].icon%></span><br>
+            <span class="temper_blue"><%=@data[2].temperatureMin.to_i %></span>°C/
+          <span class="temper_red"><%=@data[2].temperatureMax.to_i %></span>°C<br>
+          강수확률 : <span class="precipitation"><%=(@data[2].precipProbability * 100).to_i%></span>%<br>
        
         </td>
       </tr>
@@ -240,40 +244,44 @@
         <td class="weekly-content">           
           <img class="weekly-wicon mb-2" src="/assets/wicon/<%=@data[3].icon%>.png" alt="">
           <br>
-          <span>summary</span><br>
-          최저기온 <span class="temper_blue"><%=@data[3].temperatureMin.to_i %></span>°C<br>
-          최고기온 <span class="temper_red"><%=@data[3].temperatureMax.to_i %></span>°C<br>
+          <span><%=@data[3].icon%></span><br>
+            <span class="temper_blue"><%=@data[3].temperatureMin.to_i %></span>°C/
+          <span class="temper_red"><%=@data[3].temperatureMax.to_i %></span>°C<br>
+          강수확률 : <span class="precipitation"><%=(@data[3].precipProbability * 100).to_i%></span>%<br>
          
         </td>
         <td class="weekly-content">
           <img class="weekly-wicon mb-2" src="/assets/wicon/<%=@data[4].icon%>.png" alt="">
           <br>
-          <span>summary</span><br>
-          최저기온 <span class="temper_blue"><%=@data[4].temperatureMin.to_i %></span>°C<br>
-          최고기온 <span class="temper_red"><%=@data[4].temperatureMax.to_i %></span>°C<br>
+          <span><%=@data[4].icon%></span><br>
+            <span class="temper_blue"><%=@data[4].temperatureMin.to_i %></span>°C/
+          <span class="temper_red"><%=@data[4].temperatureMax.to_i %></span>°C<br>
+          강수확률 : <span class="precipitation"><%=(@data[4].precipProbability * 100).to_i%></span>%<br>
           
         </td>
         <td class="weekly-content">
           <img class="weekly-wicon mb-2" src="/assets/wicon/<%=@data[5].icon%>.png" alt="">
           <br>
-          <span>summary</span><br>
-          최저기온 <span class="temper_blue"><%=@data[5].temperatureMin.to_i %></span>°C<br>
-          최고기온 <span class="temper_red"><%=@data[5].temperatureMax.to_i %></span>°C<br>
+          <span><%=@data[5].icon%></span><br>
+            <span class="temper_blue"><%=@data[5].temperatureMin.to_i %></span>°C/
+          <span class="temper_red"><%=@data[5].temperatureMax.to_i %></span>°C<br>
+          강수확률 : <span class="precipitation"><%=(@data[5].precipProbability * 100).to_i%></span>%<br>
          
         </td>
         <td class="weekly-content">
           <img class="weekly-wicon mb-2" src="/assets/wicon/<%=@data[6].icon%>.png" alt="">
           <br>
-          <span>summary</span><br>
-          최저기온 <span class="temper_blue"><%=@data[6].temperatureMin.to_i %></span>°C<br>
-          최고기온 <span class="temper_red"><%=@data[6].temperatureMax.to_i %></span>°C<br>
+          <span><%=@data[6].icon%></span><br>
+            <span class="temper_blue"><%=@data[6].temperatureMin.to_i %></span>°C/
+          <span class="temper_red"><%=@data[6].temperatureMax.to_i %></span>°C<br>
+          강수확률 : <span class="precipitation"><%=(@data[6].precipProbability * 100).to_i%></span>%<br>
           
         </td>
       </tr>
 
     </tbody>
   </table>
-
+</div>
 
 </article>
 
