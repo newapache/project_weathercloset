@@ -38,7 +38,9 @@ class PostsController < ApplicationController
   def update
     #@post = Post.find_by(id: params[:id])
     redirect_to root_path if @post.user.id != current_user.id
-    @post.image = params[:image]
+    
+    @post.image = params[:image] unless params[:image].nil?
+    
     @post.update_attributes(content: params[:content], outer: params[:outer], top: params[:top], bottom: params[:bottom], dress: params[:dress], etc: params[:etc])
     privacy = params[:show_attribute]
     
