@@ -27,7 +27,7 @@ class PostsController < ApplicationController
     if new_post.save
       redirect_to '/posts/myindex'
     else
-      redirect_to new_post_path
+      redirect_to '/posts/myindex'
     end
   end
 
