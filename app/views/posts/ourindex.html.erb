@@ -18,11 +18,11 @@
               <h4 class="text-center">Our Closet</h4> <br>
             </div>
       </div>
-      
+  <div class="row mb-5 no-gutters">      
       <% @posts.each do |post| %>
       <% if post.show_attribute == true %>
         
-        <div class="row mb-5 no-gutters">
+
           
           <div class="col-4 clst">
             <% if post.image.url.nil? %>
@@ -52,9 +52,10 @@
               <i class="star fa fa-star-o fa-2x"></i>
             </div>
           </div>
+        
+        <% end %>
+        <% end %>
         </div>
-        <% end %>
-        <% end %>
       
   <!--    <div class="row mb-5 no-gutters">-->
   <!--    <div class="col-4 clst">-->

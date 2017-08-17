@@ -50,20 +50,20 @@
     
     <!-- 나중에는 루비 반복문으로 돌려야함 -->
     <div class="row mb-5 no-gutters">
-            <% @posts.each do |post| %>
-              <div class="col-4 clst">
-                      
-                         <p> <%= post.id %></p>
-                         <% if post.image.url.nil? %>
-                           <%= image_tag("logo_.png") %>
-                         <% else %>
-                         <%= image_tag post.image.url, :class => "upload-img"%>
-                         <% end %>
-                         <p> <%= link_to 'show', post %>  <%= link_to 'Edit', edit_post_path(post.id) %>    <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-                      
-              </div>
-           <% end %>
-        </div>
+        <% @posts.each do |post| %>
+          <div class="col-4 clst">
+                  
+                     <p> <%= post.id %></p>
+                     <% if post.image.url.nil? %>
+                       <%= image_tag("logo_.png") %>
+                     <% else %>
+                     <%= image_tag post.image.url, :class => "upload-img"%>
+                     <% end %>
+                     <p> <%= link_to 'show', post %>  <%= link_to 'Edit', edit_post_path(post.id) %>    <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+                  
+          </div>
+       <% end %>
+    </div>
     <!--<div class="row mb-5 no-gutters">-->
     <!--  <div class="col-4 clst">-->
     <!--    <a href = "/posts/show">-->
@@ -171,11 +171,12 @@
             <p> ETC    :
               <%= text_field_tag 'etc', nil, style: "width: 33%" %>
             </p>
-            <p></p>
+            <p><%= check_box_tag(:show_attribute) %>
+                    <%= label_tag(:show_attribute, "공개할거임?") %></p>
         </div>
         <!-- Footer -->
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary" data-dismiss="modal"> Upload </button>
+          <%= submit_tag 'Upload' %>
           <% end %>
         </div>
       </div>
