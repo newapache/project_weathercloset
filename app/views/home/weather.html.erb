@@ -15,7 +15,7 @@
 
 <div class="container">
 <section class="row">
-
+<h1> <%=@myday%> </h1>
 <!--오늘의 날씨를 보여준다-->
 <article class="daily-weather container col-6 pr-0 pl-0">
   <h1 class="sr-only">오늘 날씨</h1>
@@ -36,14 +36,14 @@
             
          <div class="row justify-content-center">
             <span> 
-            <% if @korTime == 24 %>
+            <% if @korHour == 24 %>
               자정 
-            <% elsif @korTime == 12 %>
+            <% elsif @korHour == 12 %>
               정오
-            <% elsif @korTime > 12 %>
-              오후 <%= @korTime-12 %>시
+            <% elsif @korHour > 12 %>
+              오후 <%= @korHour-12 %>시
             <% else %>
-              오전 <%= @korTime %>시
+              오전 <%= @korHour %>시
             <% end %> 현재
             </span>
          </div>
@@ -60,14 +60,14 @@
   
      <div class="col-3 nwcontent ml-0 mr-0 row align-items-center">
            <div>
-         <% if @korTime+1== 24 %>
+         <% if @korHour+1== 24 %>
               자정 
-              <% elsif @korTime+1 == 12 %>
+              <% elsif @korHour+1 == 12 %>
               정오
-              <% elsif @korTime+1 > 12 %>
-              오후 <%= (@korTime+1)-12 %>시
+              <% elsif @korHour+1 > 12 %>
+              오후 <%= (@korHour+1)-12 %>시
               <% else %>
-              오전 <%= @korTime+1 %>시
+              오전 <%= @korHour+1 %>시
               <% end %> 예보
     </div>
         <div class="">
@@ -80,16 +80,16 @@
 
     <div class="col-3 nwcontent ml-0 mr-0 row align-items-center">
            <div>
-         <% if @korTime+2== 24 %>
+         <% if @korHour+2== 24 %>
               자정 
-              <% elsif @korTime+2 == 12 %>
+              <% elsif @korHour+2 == 12 %>
               정오
-              <% elsif @korTime+2 > 12 %>
-              오후 <%= (@korTime+2)-12 %>시
+              <% elsif @korHour+2 > 12 %>
+              오후 <%= (@korHour+2)-12 %>시
               <% else %>
-              오전 <%= @korTime+2 %>시
+              오전 <%= @korHour+2 %>시
               <% end %> 예보
-    </div>
+    </div class="">
         <div class="">
            <img class="after-icon col-5 pl-0 pr-0" src="/assets/wicon/<%=@hourlyData[2].icon%>.png" alt="after-2-icon"/>
             <span><%=@hourlyData[2].summary%></span>
@@ -98,25 +98,9 @@
 
   </div>
 
-<!--0이 sunday부터 6까지(6은 saturday)-->
-       <% now = Time.now.in_time_zone('Seoul') %>
-       <!--오늘 월/일-->
-       <% tmonth = now.strftime("%m") %>
-       <% tday = now.strftime("%d") %>
-       <!--요일-->
-        <% myday = Integer(now.strftime("%w"))%>
-        <% if myday == 0%>      <% tday="일요일"%>
-        <% elsif myday== 1%>    <% tday="월요일"%>
-        <% elsif myday== 2%>    <% tday="화요일"%>
-        <% elsif myday== 3%>    <% tday="수요일"%>
-        <% elsif myday== 4%>    <% tday="목요일"%>
-        <% elsif myday== 5%>    <% tday="금요일"%>
-        <% elsif myday== 6%>    <% tday="토요일"%>
-        <%end%>
-        
 
   <!--어제, 오늘 내일의 대략적인 날씨를 보여준다.-->
-  <div class="today-weather container row ml-0 mr-0 mt-5">
+  <div class="today-weather-graph container row ml-0 mr-0 mt-4">
       
             <canvas id="myChart" width="400" height="200"></canvas>
             <script>
@@ -124,17 +108,12 @@
             var myChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ["오전 8시", "오후 4시", "자정", "오전 4시", "오전 8시", "정오","오후 4시", "오후 8시", "자정","오전 8시", "오후 4시", "자정"],
+                    labels: [<%=@korHour-12%>, <%=@korHour-8%>, <%=@korHour-4%>, "현재 <%=@korHour%>",<%=@korHour+4%>, <%=@korHour+8%>, <%=@korHour+12%>],
                     datasets: [{
                         label: '# of Votes',
-                        data: [ 23, 19, 3, 5, 2, 3,10, 8, 8, 3, 4, 5],
+                        data: [ <%= @hourlyData[-12].temperature.to_i%>, <%= @hourlyData[-8].temperature.to_i%>, <%= @hourlyData[-4].temperature.to_i%>, <%= @hourlyData[0].temperature.to_i%>, <%= @hourlyData[4].temperature.to_i%>, <%= @hourlyData[8].temperature.to_i%>, <%= @hourlyData[12].temperature.to_i%>],
                         backgroundColor: [
-                            'rgba(0,0,0,0)',
-                            'rgba(0,0,0,0)',
-                            'rgba(0,0,0,0)',
-                            'rgba(0,0,0,0)',
-                            'rgba(0,0,0,0)',
-                            'rgba(0,0,0,0)',
+                            'rgba(255,0,0,0)',
                             'rgba(0,0,0,0)',
                             'rgba(0,0,0,0)',
                             'rgba(0,0,0,0)',
@@ -149,12 +128,7 @@
                             'rgba(255,0,0,0.6)',
                             'rgba(255,0,0,0.6)',
                             'rgba(255,0,0,0.6)',
-                            'rgba(255,0,0,0.6)',
-                            'rgba(255,0,0,0.6)',
-                            'rgba(255,0,0,0.6)',
-                             'rgba(0,255,0,0.6)',
-                            'rgba(0,255,0,0.6)',
-                            'rgba(0,255,0,0.6)'
+                            'rgba(0,0,0,0)'
                         ],
                         borderWidth: 1
                     }]
@@ -184,132 +158,130 @@
     <span class="blue">날씨</span>
   </div>
 
-  <table class="tweekly offset-md-1 col-10" border="1">
+  <div class="col-12 mt-2">
+  <table class="tweekly">
     <tbody>
       <tr scope="row">
         <td class="weekly">현재 날씨
-          <br>  현재시간   </td>
-        <td class="weekly">오늘 오전, <%=tday%>
-          <br>   날짜   </td>
-        <td class="weekly">오늘 오후, <%=tday%>
-          <br>  날짜   </td>
+          <br> 
+           <% if @korHour == 24 %>
+              자정 
+            <% elsif @korHour == 12 %>
+              정오
+            <% elsif @korHour > 12 %>
+              오후 <%= @korHour-12 %>:<%=@korMin %>
+            <% else %>
+              오전 <%= @korHour %>:<%=@korMin %>
+            <% end %> <br>
+          </td>
           
+        <td class="weekly">오늘, <%=@todayWeekly%>
+          <br>   <%=@todayMon%>.<%=@todayDay%>   </td>
           
-          <!--myday날짜를 증가시켜준다-->
-        <% tmrday = myday+1 %>
-        <% if tmrday == 0%>      <% tmr="일요일"%>
-        <% elsif tmrday== 1%>    <% tmr="월요일"%>
-        <% elsif tmrday== 2%>    <% tmr="화요일"%>
-        <% elsif tmrday== 3%>    <% tmr="수요일"%>
-        <% elsif tmrday== 4%>    <% tmr="목요일"%>
-        <% elsif tmrday== 5%>    <% tmr="금요일"%>
-        <% elsif tmrday== 6%>    <% tmr="토요일"%>
-        <%end%>
-        
-        <td class="weekly">내일 오전, <%=tmr%>
-          <br>  날짜   </td>
-        <td class="weekly">내일 오후, <%=tmr%>
-          <br>  날짜   </td>
-
+        <td class="weekly">내일, <%=@tmrWeekly%>
+          <br>  <%=@tmrMon%>.<%=@tmrDay%>   </td>
+          
+        <td class="weekly"> <%=@thirdWeekly%>
+          <br>   <%=@thirdMon%>.<%=@thirdDay%>    </td>
+          
       </tr>
 
       <tr scope="row">
         <td class="weekly-content">
-          <img src="wicon/clear-day.png" alt="">
+          <!--현재 시각 날씨-->
+          <img class="weekly-wicon mb-2" src="/assets/wicon/<%=@currentData.icon%>.png" alt="">
           <br>
-          <span>맑음</span><br>
-          기온 : <span class="temper">32</span><br>
-          강수확률 : <span class="precipitation">50%</span><br>
+          <span><%=@currentData.summary %></span><br>
+          기온 : <span class="temper"><%=@currentData.temperature.to_i %></span>°C<br>
+          강수량 : <span class="precipitation"><%= (@currentData.precipIntensity*25.4).to_i %></span>mm<br>
         </td>
 
         <td class="weekly-content">
-          <img src="wicon/clear-day.png" alt="">
+          <!--오늘 날씨-->
+          <img class="weekly-wicon mb-2" src="/assets/wicon/<%=@data[0].icon%>.png" alt="">
           <br>
-          <span>맑음</span><br>
-          기온 : <span class="temper">32</span><br>
-          강수확률 : <span class="precipitation">50%</span><br>
+          <span><%=@data[0].icon%></span><br>
+            <span class="temper_blue"><%=@data[0].temperatureMin.to_i %></span>°C/
+          <span class="temper_red"><%=@data[0].temperatureMax.to_i %></span>°C<br>
+          강수확률 : <span class="precipitation"><%=(@data[0].precipProbability * 100).to_i%></span>%<br>
         </td>
 
 
         <td class="weekly-content">
-          <img src="wicon/clear-day.png" alt="">
+           <!--내일 날씨-->
+          <img class="weekly-wicon mb-2" src="/assets/wicon/<%=@data[1].icon%>.png" alt="">
           <br>
-          <span>맑음</span><br>
-          기온 : <span class="temper">32</span><br>
-          강수확률 : <span class="precipitation">50%</span><br>
+          <span><%=@data[1].icon%></span><br>
+            <span class="temper_blue"><%=@data[1].temperatureMin.to_i %></span>°C/
+          <span class="temper_red"><%=@data[1].temperatureMax.to_i %></span>°C<br>
+          강수확률 : <span class="precipitation"><%=(@data[1].precipProbability * 100).to_i%></span>%<br>
         </td>
 
         <td class="weekly-content">
-          <img src="wicon/clear-day.png" alt="">
+          <img class="weekly-wicon mb-2" src="/assets/wicon/<%=@data[2].icon%>.png" alt="">
           <br>
-          <span>맑음</span><br>
-          기온 : <span class="temper">32</span><br>
-          강수확률 : <span class="precipitation">50%</span><br>
+          <span><%=@data[2].icon%></span><br>
+            <span class="temper_blue"><%=@data[2].temperatureMin.to_i %></span>°C/
+          <span class="temper_red"><%=@data[2].temperatureMax.to_i %></span>°C<br>
+          강수확률 : <span class="precipitation"><%=(@data[2].precipProbability * 100).to_i%></span>%<br>
+       
         </td>
-
-        <td class="weekly-content">
-          <img src="wicon/clear-day.png" alt="">
-          <br>
-          <span>맑음</span><br>
-          기온 : <span class="temper">32</span><br>
-          강수확률 : <span class="precipitation">50%</span><br>
-        </td>
+      </tr>
+      <!-- 주간 날씨-->
+      <tr scope="row">
+        <td class="weekly"> <%= @fourthWeekly%>
+        <br> <%=@fourthMon%>.<%=@fourthDay%> </td>
+        <td class="weekly"> <%= @fifthWeekly%>
+        <br> <%=@fifthMon%>.<%=@fifthDay%> </td>
+        <td class="weekly"> <%= @sixthWeekly%>
+        <br> <%=@sixthMon%>.<%=@sixthDay%> </td>
+        <td class="weekly"> <%= @afteroneWeekly%>
+        <br> <%=@afterWeekMon%>.<%=@afterWeekDay%> </td>
       </tr>
 
       <tr scope="row">
-        <td class="weekly">일요일
-        <br> 날짜 </td>
-        <td class="weekly">월요일
-        <br> 날짜 </td>
-        <td class="weekly">화요일
-        <br> 날짜 </td>
-        <td class="weekly">수요일
-        <br> 날짜 </td>
-        <td class="weekly">목요일
-        <br> 날짜 </td>
-      </tr>
-
-      <tr scope="row">
-        <td class="weekly-content">
-          <img src="wicon/clear-day.png" alt="">
+       
+        <td class="weekly-content">           
+          <img class="weekly-wicon mb-2" src="/assets/wicon/<%=@data[3].icon%>.png" alt="">
           <br>
-          <span>맑음</span><br>
-          기온 : <span class="temper">32</span><br>
-          강수확률 : <span class="precipitation">50%</span><br>
+          <span><%=@data[3].icon%></span><br>
+            <span class="temper_blue"><%=@data[3].temperatureMin.to_i %></span>°C/
+          <span class="temper_red"><%=@data[3].temperatureMax.to_i %></span>°C<br>
+          강수확률 : <span class="precipitation"><%=(@data[3].precipProbability * 100).to_i%></span>%<br>
+         
         </td>
         <td class="weekly-content">
-          <img src="wicon/clear-day.png" alt="">
+          <img class="weekly-wicon mb-2" src="/assets/wicon/<%=@data[4].icon%>.png" alt="">
           <br>
-          <span>맑음</span><br>
-          기온 : <span class="temper">32</span><br>
-          강수확률 : <span class="precipitation">50%</span><br>
+          <span><%=@data[4].icon%></span><br>
+            <span class="temper_blue"><%=@data[4].temperatureMin.to_i %></span>°C/
+          <span class="temper_red"><%=@data[4].temperatureMax.to_i %></span>°C<br>
+          강수확률 : <span class="precipitation"><%=(@data[4].precipProbability * 100).to_i%></span>%<br>
+          
         </td>
         <td class="weekly-content">
-          <img src="wicon/clear-day.png" alt="">
+          <img class="weekly-wicon mb-2" src="/assets/wicon/<%=@data[5].icon%>.png" alt="">
           <br>
-          <span>맑음</span><br>
-          기온 : <span class="temper">32</span><br>
-          강수확률 : <span class="precipitation">50%</span><br>
+          <span><%=@data[5].icon%></span><br>
+            <span class="temper_blue"><%=@data[5].temperatureMin.to_i %></span>°C/
+          <span class="temper_red"><%=@data[5].temperatureMax.to_i %></span>°C<br>
+          강수확률 : <span class="precipitation"><%=(@data[5].precipProbability * 100).to_i%></span>%<br>
+         
         </td>
         <td class="weekly-content">
-          <img src="wicon/clear-day.png" alt="">
+          <img class="weekly-wicon mb-2" src="/assets/wicon/<%=@data[6].icon%>.png" alt="">
           <br>
-          <span>맑음</span><br>
-          기온 : <span class="temper">32</span><br>
-          강수확률 : <span class="precipitation">50%</span><br>
-        </td>
-        <td class="weekly-content">
-          <img src="wicon/clear-day.png" alt="">
-          <br>
-          <span>맑음</span><br>
-          기온 : <span class="temper">32</span><br>
-          강수확률 : <span class="precipitation">50%</span><br>
+          <span><%=@data[6].icon%></span><br>
+            <span class="temper_blue"><%=@data[6].temperatureMin.to_i %></span>°C/
+          <span class="temper_red"><%=@data[6].temperatureMax.to_i %></span>°C<br>
+          강수확률 : <span class="precipitation"><%=(@data[6].precipProbability * 100).to_i%></span>%<br>
+          
         </td>
       </tr>
 
     </tbody>
   </table>
-
+</div>
 
 </article>
 
