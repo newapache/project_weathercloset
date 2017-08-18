@@ -13,54 +13,19 @@
 <body>
 
 <!--아래 div는 날씨와 오늘의 코디 배치를 위해 넣었어요.-->
-<<<<<<< HEAD
 
-<div class="container twoarticle row mt-1 mx-auto">
 
-<h1><%= @locationValue%></h1>
-
-=======
 <div class=" container twoarticle row mt-1 ml-auto mr-auto">
->>>>>>> minhyun
+
 
 <!--<div class="container row col-8 ml-auto mr-auto">-->
   <!--날씨를 보여주는 article-->
   <article class="main-weather container col-8 row justify-content-between">
   <h1 class="sr-only">간략한 날씨를 보여주는 화면</h1>
-<<<<<<< HEAD
-    <span class="col-6 tletter mt-2">오늘 날씨</span>
-    <div class="col-6 mt-2">
-      
-      <!--<%= select_tag(:city_id, options_for_select([['Lisbon', 1], ['Madrid', 2]], 1)) %>-->
-      
-      <!-- <form name="sido" id="search_area form"  class="search_area offset-md-6 col-6 ">-->
-          <!--지역선택-->
-      <!--  <select name="sido" id="search_area" class="search_area offset-md-6 col-6 " title="지역 선택" >-->
-      <!--    <option value="">지역 선택</option>-->
-      <!--                <option value="1">강원도</option>-->
-      <!--                <option value="2">부산광역시</option>-->
-      <!--                <option value="3">서울특별시</option>-->
-      <!--                <option value="4">경기도</option>-->
-      <!--                <option value="5">경상남도</option>-->
-      <!--                <option value="6">경상북도</option>-->
-      <!--                <option value="7">광주광역시</option>-->
-      <!--                <option value="8">대구광역시</option>-->
-      <!--                <option value="9">대전광역시</option>-->
-      <!--                <option value="10">세종특별자치시</option>-->
-      <!--                <option value="11">울산광역시</option>-->
-      <!--                <option value="12">인천광역시</option>-->
-      <!--                <option value="13">전라남도</option>-->
-      <!--                <option value="14">전라북도</option>-->
-      <!--                <option value="15">제주특별자치도</option>-->
-      <!--                <option value="16">충청남도</option>-->
-      <!--                <option value="17">충청북도</option>-->
-      <!--  </select>-->
-        <div class="dropdown">
-=======
-    <span class="col-6 tletter mt-2">오늘 날씨</span>`
 
-  <div class="offset-md-2 col-4 mt-2">
-  <div class="offset-md-5 dropdown">
+<div class="row" >
+    <span class="tletter mt-2">오늘 날씨</span>
+     <div class="offset-md-6 col-3 dropdown">
 
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             지역 선택
@@ -89,7 +54,12 @@
             
           </div>
         </div>
+        
+        </div>
 
+
+  <div class="offset-md-2 col-4 mt-2">
+   
      
 
 </div>
@@ -225,18 +195,6 @@
   </article>
 </div>
 
-
-<!--article class에 row를 주고 span에 mt-2를 주면 오늘의 날씨 layout에도 영향이가는 이유는 왜일까..?-->
-  <article class=" today-best col-3 ml-4 mr-0">
-      <span class="tletter mt-2">오늘의 추천코디</span>
-      <div class="main-tcody row align-items-center justify-content-center mt-3">
-        <img id="main-tcody" src="assets/photo12.jpg" alt="today best cody">
-      </div>
-  </article>
-
-
-<div class="container row mt-1 ml-auto mr-auto">
-
 <article class="mt-1 today-closet container">
   <h1 class="tc mt-2">< Today Closet ></h1><br>
   
@@ -244,7 +202,7 @@
     <div class="all">
       <img src="/assets/24.png" >
       </div>
-  <table class="table mt-1">
+ <table class="table mt-1">
    <thead class="thead">
      
     <tr>
@@ -257,13 +215,11 @@
     
     <tbody>
     <tr>
-
       <td>
     <% @outer_O.each do |oo| %>
       <%= oo %><br><br>
     <% end %></td>
       
-
       <td>
     <% @top_O.each do |to| %>
       <%= to %><br><br>
@@ -277,22 +233,8 @@
       <td>
     <% @shoes_O.each do |so| %>
       <%= so %><br><br>
-
     <% end %></td>
       
-
-    <% end %><td>
-
-    <th scope="row">블루종</th>
-    <td>불가</td>
-    <td>후드</td>
-    <td>불가</td>
-    <td>청치마</td>
-    <td>가능</td>
-    <td>원피스</td>
-    <td>가능</td>
-
-
     </tr>
     </tbody>
   </table><br><br>
@@ -309,17 +251,6 @@
     <th>TOP</th>
     <th>Bottom</th>
     <th>Shoes</th>
-    </tr>
-    </thead>
-    
-    <tbody>
-    <tr>
-
-    <tr>
-    <th colspan="2">Outer</th> 
-    <th colspan="2">TOP</th>
-    <th colspan="2">Bottom</th>
-    <th colspan="2">shoe</th>
     </tr>
     </thead>
     
@@ -388,21 +319,12 @@
       <%= so %><br><br>
     <% end %></td>
       
-    <th scope="row">가디건</th>
-    <td>가능</td>
-    <td>맨투맨</td>
-    <td>불가</td>
-    <td>치마</td>
-    <td>가능</td>
-    <td></td>
-    <td></td>
     </tr>
     </tbody>
-  </table><br><br>
-
-  
+  </table>
   </article>
-
+<!--article class에 row를 주고 span에 mt-2를 주면 오늘의 날씨 layout에도 영향이가는 이유는 왜일까..?-->
+  
   <!--<footer class="footer">-->
   <!--        <div class="logo__img mx-auto">-->
   <!--          <img src="assets/logo_.png" alt="로고"></img>-->
@@ -415,9 +337,4 @@
   <!--</footer>-->
 
 
-  <!-- jQuery first, then Tether, then Bootstrap JS. -->
-  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 </body>
-
