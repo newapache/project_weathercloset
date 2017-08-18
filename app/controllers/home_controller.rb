@@ -277,7 +277,7 @@ class HomeController < ApplicationController
       #===============================================================
       #====================== index function ends ====================
         @locationValue = params[:city_id]
-        @person = User.new(region: 1)
+        # @person = User.new(region: 1)
 
     end
    
