@@ -8,8 +8,17 @@ class HomeController < ApplicationController
         unixTime = forecast.hourly.data[0].time.to_s
         @localTime = DateTime.strptime(unixTime,'%d')
         
+        @korHour = Time.now.in_time_zone('Seoul').hour
+        @korMin = Time.now.strftime("%M")
+        @korMon = Time.now.in_time_zone('Seoul').month
+        @korDay = Time.now.in_time_zone('Seoul').day
+      
+    
         @hourlyData = forecast.hourly.data
-
+   
+        @locationValue = params[:city_id]
+        @person = User.new(region: 1)
+        
     end
     
     def weather
@@ -18,14 +27,23 @@ class HomeController < ApplicationController
         @timezone = forecast.timezone
         #@daily = forecast.daily.summary
         @data = forecast.daily.data
-        @korTime = Time.now.in_time_zone('Seoul').hour
+        
+        @korHour = Time.now.in_time_zone('Seoul').hour
+        @korMin = Time.now.strftime("%M")
+        @korMon = Time.now.in_time_zone('Seoul').month
+        @korDay = Time.now.in_time_zone('Seoul').day
         #unixTime = forecast.hourly.data[0].time.to_s
         #@localTime = DateTime.strptime(unixTime,'%s')
         
+        #weekly month value
+        @todayMon = (Time.now).month
+        @tmrMon = (Time.now + (24*60*60)).month
+        @thirdMon = (Time.now + (2*24*60*60)).month
+        @fourthMon = (Time.now + (3*24*60*60)).month
+        @fifthMon = (Time.now + (4*24*60*60)).month
+        @sixthMon = (Time.now + (5*24*60*60)).month 
+        @afterWeekMon = (Time.now + (6*24*60*60)).month
         
-<<<<<<<<< saved version
-
-=========
         #weekly day value
         @todayDay = (Time.now).day
         @tmrDay = (Time.now + (24*60*60)).day 
@@ -57,11 +75,13 @@ class HomeController < ApplicationController
         @afteroneWeekly = (Time.now + (6*24*60*60)).strftime("%A")
         
         @korMin = Time.now.strftime("%M")
+        
+        
+        
+        
+       
         @hourlyData = forecast.hourly.data
-        
-        #날씨 한글로
-        @currentData.icon
-        
->>>>>>>>> local version
     end
+    
+  
 end
