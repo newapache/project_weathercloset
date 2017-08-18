@@ -15,7 +15,7 @@ class HomeController < ApplicationController
       
     
         @hourlyData = forecast.hourly.data
-        
+
                 #wind speed
         ws = @currentData.windSpeed
         ws_ok = 4 #수정해야 함!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -276,6 +276,8 @@ class HomeController < ApplicationController
       
       #===============================================================
       #====================== index function ends ====================
+        @locationValue = params[:city_id]
+        @person = User.new(region: 1)
 
     end
    
@@ -314,8 +316,7 @@ class HomeController < ApplicationController
         
         
         #weekly 요일 value
-        
-        
+
        # 0이 sunday부터 6까지(6은 saturday)
        # 현재 시간을 now에 저장
        now = Time.now.in_time_zone('Seoul')
