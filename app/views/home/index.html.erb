@@ -141,74 +141,130 @@
         </div>
   </article>
 <!--</div>-->
-
-
-<!--article class에 row를 주고 span에 mt-2를 주면 오늘의 날씨 layout에도 영향이가는 이유는 왜일까..?-->
-  <article class=" today-best col-3 ml-4 mr-0">
-      <span class="tletter mt-2">오늘의 추천코디</span>
-      <div class="main-tcody row align-items-center justify-content-center mt-3">
-        <img id="main-tcody" src="assets/photo12.jpg" alt="today best cody">
-      </div>
-  </article>
 </div>
 
-<div class="container row mt-1 ml-auto mr-auto">
+<!--article class에 row를 주고 span에 mt-2를 주면 오늘의 날씨 layout에도 영향이가는 이유는 왜일까..?-->
 <article class="mt-1 today-closet container">
-  <span class="tletter mt-2">오늘의 옷장</span>
+  <span class="tletter mt-2">오늘의 옷장</span><br>
+  
+  <!--하루종일가능-->
   <table class="table mt-3">
-    <thead class="thead-inverse">
+   <thead class="thead">
+     
     <tr>
-    <th colspan="2">Outer</th>
+    <th colspan="2">Outer</th> 
     <th colspan="2">TOP</th>
     <th colspan="2">Bottom</th>
     <th colspan="2">shoe</th>
-
     </tr>
     </thead>
+    
     <tbody>
-    
-    <!-------- 프론트가 해주겠지?----^o^♥ (줄이 안 맞아요ㅠ0ㅠ어흑흑)  --->
-    <!-- 하루종일 가능(조건X) -->
-    <% [@outer_O, @top_O, @bottom_O, @shoe_O].each do |oo, to, bo, so| %>
     <tr>
-      <td><%= oo %></td>
-      <td>가능</td>
-      <td><%= to %></td>
-      <td>가능</td>
-      <td><%= bo %></td>
-      <td>가능</td>
-      <td><%= so %></td>
-      <td>가능</td>
-    </tr>
-    <% end %>
-    
-    <!-- 아침/밤 or 낮 에만 가능 -->
-    
-    
-    <tr>
-    <th scope="row">과잠</th>
-    <td>불가</td>
-    <td>반팔</td>
-    <td>가능</td>
-    <td>면바지</td>
-    <td>가능</td>
-    <td></td>
-    <td></td>
-    </tr>
-    <tr>
-    <th scope="row">가디건</th>
-    <td>가능</td>
-    <td>맨투맨</td>
-    <td>불가</td>
-    <td>치마</td>
-    <td>가능</td>
-    <td></td>
-    <td></td>
+      <td>
+    <% @outer_O.each do |oo| %>
+      <%= oo %><br><br>
+    <% end %><td>
+      
+      <td>
+    <% @top_O.each do |to| %>
+      <%= to %><br><br>
+    <% end %><td>
+      
+      <td>
+    <% @bottom_O.each do |bo| %>
+      <%= bo %><br><br>
+    <% end %><td>
+      
+      <td>
+    <% @shoes_O.each do |so| %>
+      <%= so %><br><br>
+    <% end %><td>
+      
     </tr>
     </tbody>
-  </table>
+  </table><br><br>
+  
+  <p>< 낮에만 가능 ></p>
+  
+   <table class="table mt-3">
+   <thead class="thead">
+     
+    <tr>
+    <th colspan="2">Outer</th> 
+    <th colspan="2">TOP</th>
+    <th colspan="2">Bottom</th>
+    <th colspan="2">shoe</th>
+    </tr>
+    </thead>
+    
+    <tbody>
+    <tr>
+      <td>
+    <% @outer_Tp.each do |oo| %>
+      <%= oo %><br><br>
+    <% end %><td>
+      
+      <td>
+    <% @top_Tp.each do |to| %>
+      <%= to %><br><br>
+    <% end %><td>
+      
+      <td>
+    <% @bottom_Tp.each do |bo| %>
+      <%= bo %><br><br>
+    <% end %><td>
+      
+      <td>
+    <% @shoes_Tp.each do |so| %>
+      <%= so %><br><br>
+    <% end %><td>
+      
+    </tr>
+    </tbody>
+  </table><br><br>
+     
+      <!--<p><아침/밤에만 가능 (세모마이너스)></p>-->
+      <p><아침/밤에만 가능></p>
+    <table class="table mt-3">
+   <thead class="thead">
+     
+    <tr>
+    <th colspan="2">Outer</th> 
+    <th colspan="2">TOP</th>
+    <th colspan="2">Bottom</th>
+    <th colspan="2">shoe</th>
+    </tr>
+    </thead>
+    
+    <tbody>
+    <tr>
+      <td>
+    <% @outer_Tm.each do |oo| %>
+      <%= oo %><br><br>
+    <% end %><td>
+      
+      <td>
+    <% @top_Tm.each do |to| %>
+      <%= to %><br><br>
+    <% end %><td>
+      
+      <td>
+    <% @bottom_Tm.each do |bo| %>
+      <%= bo %><br><br>
+    <% end %><td>
+      
+      <td>
+    <% @shoes_Tm.each do |so| %>
+      <%= so %><br><br>
+    <% end %><td>
+      
+    </tr>
+    </tbody>
+  </table><br><br>
 </article>
-</div>
+
+
 
   <!-- jQuery first, then Tether, then Bootstrap JS. -->
   <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
