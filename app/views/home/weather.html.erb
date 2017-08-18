@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="weather.css">
 </head>
 
-
+<h1><%= @myvalue %></h1>
 <!--날짜를 받아옵니다!-->
 
 <div class="container">
@@ -21,34 +21,43 @@
   <h1 class="sr-only">오늘 날씨</h1>
   <!--title-->
 <div class= "row">
-              <div class="tcolor mt-2 offset-md-1 col-4">
+              <div class="tcolor mt-2 col-12 dropdown row">
+                <div class="offset-md-1">    
                 <span class="black">오늘의</span>
                 <span class="blue">날씨</span>
+                </div>
+            
                 
-              </div>
-              <div class="col-6">
-                    <!--지역선택-->
-                    <select name="sido" id="search_area" class="search_area offset-md-6 col-7 " title="지역 선택" >
-                      <option value="">지역 선택</option>
-                      <option value="1">강원도</option>
-                      <option value="2">부산광역시</option>
-                      <option value="3">서울특별시</option>
-                      <option value="4">경기도</option>
-                      <option value="5">경상남도</option>
-                      <option value="6">경상북도</option>
-                      <option value="7">광주광역시</option>
-                      <option value="8">대구광역시</option>
-                      <option value="9">대전광역시</option>
-                      <option value="10">세종특별자치시</option>
-                      <option value="11">울산광역시</option>
-                      <option value="12">인천광역시</option>
-                      <option value="13">전라남도</option>
-                      <option value="14">전라북도</option>
-                      <option value="15">제주특별자치도</option>
-                      <option value="16">충청남도</option>
-                      <option value="17">충청북도</option>
-                    </select>
-            </div>
+            
+       
+          <button class="btn btn-secondary dropdown-toggle offset-md-6 col-3" type="button"  id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            지역 선택
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <button class="dropdown-item" type="button"><a href="/?id=강원도">강원도</a></button>
+            <button class="dropdown-item" type="button"><a href="/?id=경기도">경기도</a></button>
+            <button class="dropdown-item" type="button"><a href="/?id=경상남도">경상남도</a></button>
+            <button class="dropdown-item" type="button"><a href="/?id=경상북도">경상북도</a></button>
+            <button class="dropdown-item" type="button"><a href="/?id=광주광역시">광주광역시</a></button>
+            <button class="dropdown-item" type="button"><a href="/?id=대구광역시">대구광역시</a></button>
+            <button class="dropdown-item" type="button"><a href="/?id=대전광역시">대전광역시</a></button>
+            <button class="dropdown-item" type="button"><a href="/?id=부산광역시">부산광역시</a></button>
+            <button class="dropdown-item" type="button"><a href="/?id=서울특별시">서울특별시</a></button>
+            <button class="dropdown-item" type="button"><a href="/?id=세종특별자치시">세종특별자치시</a></button>
+            <button class="dropdown-item" type="button"><a href="/?id=울산광역시">울산광역시</a></button>
+            <button class="dropdown-item" type="button"><a href="/?id=인천광역시">인천광역시</a></button>
+            <button class="dropdown-item" type="button"><a href="/?id=전라남도">전라남도</a></button>
+            <button class="dropdown-item" type="button"><a href="/?id=전라북도">전라북도</a></button>
+            <button class="dropdown-item" type="button"><a href="/?id=제주특별자치도">제주특별자치도</a></button>
+            <button class="dropdown-item" type="button"><a href="/?id=충청남도">충청남도</a></button>
+            <button class="dropdown-item" type="button"><a href="/?id=충청북도">충청북도</a></button>
+            
+          </div>
+        </div>
+
+              
+      
+           
   
 </div>
   <!--현재의 날씨를 보여준다.-->
@@ -76,8 +85,9 @@
          </div>
         
         <div class="row justify-content-center">
-            <span class="mr-1"><%=@currentData.temperature.to_i%>도</span>
+            <div class="mr-1"><%=@currentData.temperature.to_i%>°C</div>/
             <span><%=@currentData.summary %></span>
+            <span>미세먼지 : <%= @dustGrade %></span>
         </div>
         
         
@@ -127,7 +137,7 @@
 
 
   <!--어제, 오늘 내일의 대략적인 날씨를 보여준다.-->
-  <div class="today-weather-graph container row ml-0 mr-0 mt-4">
+  <div class="today-weather-graph container row ml-0 mr-0 mt-5">
       
             <canvas id="myChart" width="400" height="200"></canvas>
             <script>
@@ -137,7 +147,7 @@
                 data: {
                     labels: [<%=@korHour-12%>, <%=@korHour-8%>, <%=@korHour-4%>, "현재 <%=@korHour%>",<%=@korHour+4%>, <%=@korHour+8%>, <%=@korHour+12%>],
                     datasets: [{
-                        label: '# of Votes',
+                        label: 'Today Weather',
                         data: [ <%= @hourlyData[-12].temperature.to_i%>, <%= @hourlyData[-8].temperature.to_i%>, <%= @hourlyData[-4].temperature.to_i%>, <%= @hourlyData[0].temperature.to_i%>, <%= @hourlyData[4].temperature.to_i%>, <%= @hourlyData[8].temperature.to_i%>, <%= @hourlyData[12].temperature.to_i%>],
                         backgroundColor: [
                             'rgba(255,0,0,0)',
