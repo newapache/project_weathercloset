@@ -16,6 +16,8 @@ class HomeController < ApplicationController
     
         @hourlyData = forecast.hourly.data
    
+        @locationValue = params[:city_id]
+        @person = User.new(region: 1)
         
     end
     
