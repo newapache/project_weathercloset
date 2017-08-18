@@ -1,4 +1,4 @@
-<html>
+
 <head>
   <!--index.css-->
   <link rel="stylesheet" type="text/css" href="home.scss">
@@ -9,43 +9,68 @@
 
 <!--아래 div는 날씨와 오늘의 코디 배치를 위해 넣었어요.-->
 
-<div class=" container twoarticle row mt-1 mx-auto">
+<div class="container twoarticle row mt-1 mx-auto">
 
 <h1><%= @locationValue%></h1>
 
 
 <!--<div class="container row col-8 ml-auto mr-auto">-->
   <!--날씨를 보여주는 article-->
-  <article class="main-weather container ml-4 mr-0 col-8 pl-5 pr-1 row justify-content-between">
+  <article class="main-weather container col-8 row justify-content-between">
   <h1 class="sr-only">간략한 날씨를 보여주는 화면</h1>
     <span class="col-6 tletter mt-2">오늘 날씨</span>
     <div class="col-6 mt-2">
       
-      <%= select_tag(:city_id, options_for_select([['Lisbon', 1], ['Madrid', 2]], 1)) %>
+      <!--<%= select_tag(:city_id, options_for_select([['Lisbon', 1], ['Madrid', 2]], 1)) %>-->
       
-       <form name="sido" id="search_area form"  class="search_area offset-md-6 col-6 ">
+      <!-- <form name="sido" id="search_area form"  class="search_area offset-md-6 col-6 ">-->
           <!--지역선택-->
-        <select name="sido" id="search_area" class="search_area offset-md-6 col-6 " title="지역 선택" >
-          <option value="">지역 선택</option>
-                      <option value="1">강원도</option>
-                      <option value="2">부산광역시</option>
-                      <option value="3">서울특별시</option>
-                      <option value="4">경기도</option>
-                      <option value="5">경상남도</option>
-                      <option value="6">경상북도</option>
-                      <option value="7">광주광역시</option>
-                      <option value="8">대구광역시</option>
-                      <option value="9">대전광역시</option>
-                      <option value="10">세종특별자치시</option>
-                      <option value="11">울산광역시</option>
-                      <option value="12">인천광역시</option>
-                      <option value="13">전라남도</option>
-                      <option value="14">전라북도</option>
-                      <option value="15">제주특별자치도</option>
-                      <option value="16">충청남도</option>
-                      <option value="17">충청북도</option>
-        </select>
-       </form>
+      <!--  <select name="sido" id="search_area" class="search_area offset-md-6 col-6 " title="지역 선택" >-->
+      <!--    <option value="">지역 선택</option>-->
+      <!--                <option value="1">강원도</option>-->
+      <!--                <option value="2">부산광역시</option>-->
+      <!--                <option value="3">서울특별시</option>-->
+      <!--                <option value="4">경기도</option>-->
+      <!--                <option value="5">경상남도</option>-->
+      <!--                <option value="6">경상북도</option>-->
+      <!--                <option value="7">광주광역시</option>-->
+      <!--                <option value="8">대구광역시</option>-->
+      <!--                <option value="9">대전광역시</option>-->
+      <!--                <option value="10">세종특별자치시</option>-->
+      <!--                <option value="11">울산광역시</option>-->
+      <!--                <option value="12">인천광역시</option>-->
+      <!--                <option value="13">전라남도</option>-->
+      <!--                <option value="14">전라북도</option>-->
+      <!--                <option value="15">제주특별자치도</option>-->
+      <!--                <option value="16">충청남도</option>-->
+      <!--                <option value="17">충청북도</option>-->
+      <!--  </select>-->
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            지역 선택
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <button class="dropdown-item" type="button">강원도</button>
+            <button class="dropdown-item" type="button">경기도</button>
+            <button class="dropdown-item" type="button">경상남도</button>
+            <button class="dropdown-item" type="button">경상북도</button>
+            <button class="dropdown-item" type="button">광주광역시</button>
+            <button class="dropdown-item" type="button">대구광역시</button>
+            <button class="dropdown-item" type="button">대전광역시</button>
+            <button class="dropdown-item" type="button">부산광역시</button>
+            <button class="dropdown-item" type="button">서울특별시</button>
+            <button class="dropdown-item" type="button">세종특별자치시</button>
+            <button class="dropdown-item" type="button">울산광역시</button>
+            <button class="dropdown-item" type="button">인천광역시</button>
+            <button class="dropdown-item" type="button">전라남도</button>
+            <button class="dropdown-item" type="button">전라북도</button>
+            <button class="dropdown-item" type="button">제주특별자치도</button>
+            <button class="dropdown-item" type="button">충청남도</button>
+            <button class="dropdown-item" type="button">충청북도</button>
+            
+          </div>
+        </div>
+       <!--</form>-->
 </div>
         <!--날씨-->
         <div class="main-tweather mt-2 row ml-auto mr-auto">
@@ -143,21 +168,60 @@
         </div>
   </article>
 <!--</div>-->
+<article class="col-4">
+      <div class="text-center ment align-items-center">
+       <% if @data[0].temperatureMax.to_i  >=  20 %>
+          <!--폭염img-->
+          <div class="ment-img">
+          <img src="/assets/toohot">
+          </div>
+      <% elsif @data[0].temperatureMin.to_i  <= -3 %>
+          <!--한파 img-->
+          <div class="ment-img">
+          <img src="/assets/toocold">
+          </div>
+          <% if @currentData.windSpeed.to_i >= 3 %>
+          <!-- 바람 img -->
+          <div class="ment-img">
+          <img src="/assets/windy">
+          </div>
+          <% end %>
+          
+      <% elsif @currentData.windSpeed.to_i >= 3 %>
+        <!-- 바람 img -->
+        <div class="ment-img">
+        <img src="/assets/windy">
+        </div>
+        <% if (@currentData.precipProbability * 100).to_i  >= 7 %>
+        <!-- 비 img -->
+        <div class="ment-img">
+        <img src="/assets/rainy">
+        </div>
+        <% end %>
+        
+          
+      <% end %>
+      </div>
+  </article>
 </div>
+
 
 <!--article class에 row를 주고 span에 mt-2를 주면 오늘의 날씨 layout에도 영향이가는 이유는 왜일까..?-->
 <article class="mt-1 today-closet container">
-  <span class="tletter mt-2">오늘의 옷장</span><br>
+  <h1 class="tc mt-2">< Today Closet ></h1><br>
   
   <!--하루종일가능-->
-  <table class="table mt-3">
+    <div class="all">
+      <img src="/assets/24.png" >
+      </div>
+  <table class="table mt-1">
    <thead class="thead">
      
     <tr>
-    <th colspan="2">Outer</th> 
-    <th colspan="2">TOP</th>
-    <th colspan="2">Bottom</th>
-    <th colspan="2">shoe</th>
+    <th>Outer</th> 
+    <th>TOP</th>
+    <th>Bottom</th>
+    <th>Shoes</th>
     </tr>
     </thead>
     
@@ -166,37 +230,39 @@
       <td>
     <% @outer_O.each do |oo| %>
       <%= oo %><br><br>
-    <% end %><td>
+    <% end %></td>
       
       <td>
     <% @top_O.each do |to| %>
       <%= to %><br><br>
-    <% end %><td>
+    <% end %></td>
       
       <td>
     <% @bottom_O.each do |bo| %>
       <%= bo %><br><br>
-    <% end %><td>
+    <% end %></td>
       
       <td>
     <% @shoes_O.each do |so| %>
       <%= so %><br><br>
-    <% end %><td>
+    <% end %></td>
       
     </tr>
     </tbody>
   </table><br><br>
   
-  <p>< 낮에만 가능 ></p>
-  
-   <table class="table mt-3">
+  <!--<p>< 낮에만 가능 ></p>-->
+  <div class="noon">
+      <img src="/assets/noon.png" >
+      </div>
+   <table class="table mt-1">
    <thead class="thead">
      
     <tr>
-    <th colspan="2">Outer</th> 
-    <th colspan="2">TOP</th>
-    <th colspan="2">Bottom</th>
-    <th colspan="2">shoe</th>
+    <th>Outer</th> 
+    <th>TOP</th>
+    <th>Bottom</th>
+    <th>Shoes</th>
     </tr>
     </thead>
     
@@ -205,37 +271,41 @@
       <td>
     <% @outer_Tp.each do |oo| %>
       <%= oo %><br><br>
-    <% end %><td>
+    <% end %></td>
       
       <td>
     <% @top_Tp.each do |to| %>
       <%= to %><br><br>
-    <% end %><td>
+    <% end %></td>
       
       <td>
     <% @bottom_Tp.each do |bo| %>
       <%= bo %><br><br>
-    <% end %><td>
+    <% end %></td>
       
       <td>
     <% @shoes_Tp.each do |so| %>
       <%= so %><br><br>
-    <% end %><td>
+    <% end %></td>
       
     </tr>
     </tbody>
   </table><br><br>
+  
+  
+  
      
       <!--<p><아침/밤에만 가능 (세모마이너스)></p>-->
-      <p><아침/밤에만 가능></p>
-    <table class="table mt-3">
+      <div class="mornight">
+      <img src="/assets/mornight.png" >
+      </div>
+    <table class="table mt-1">
    <thead class="thead">
-     
     <tr>
-    <th colspan="2">Outer</th> 
-    <th colspan="2">TOP</th>
-    <th colspan="2">Bottom</th>
-    <th colspan="2">shoe</th>
+    <th>Outer</th> 
+    <th>TOP</th>
+    <th>Bottom</th>
+    <th>Shoes</th>
     </tr>
     </thead>
     
@@ -244,28 +314,40 @@
       <td>
     <% @outer_Tm.each do |oo| %>
       <%= oo %><br><br>
-    <% end %><td>
+    <% end %></td>
       
       <td>
     <% @top_Tm.each do |to| %>
       <%= to %><br><br>
-    <% end %><td>
+    <% end %></td>
       
       <td>
     <% @bottom_Tm.each do |bo| %>
       <%= bo %><br><br>
-    <% end %><td>
+    <% end %></td>
       
       <td>
     <% @shoes_Tm.each do |so| %>
       <%= so %><br><br>
-    <% end %><td>
+    <% end %></td>
       
     </tr>
     </tbody>
   </table><br><br>
-</article>
 
+  
+  </article>
+
+  <!--<footer class="footer">-->
+  <!--        <div class="logo__img mx-auto">-->
+  <!--          <img src="assets/logo_.png" alt="로고"></img>-->
+  <!--        </div>-->
+  <!--        <h2 class="service_name">Weather Closet</h2>-->
+  <!--        <p class="service_text">이화여대 김선경, 연세대 김연진, 덕성여대 이민현, 세종대 이완수, 동덕여대 장윤미로 이루어진 팀입니다.<br>-->
+  <!--        모두가 날씨에 맞는 옷을 입는 그날까지 -ing.-->
+  <!--        </p>-->
+  <!--        <p class="copyright">&copy; 2017 WeatherCloset. All Rights Reserved.</p>-->
+  <!--</footer>-->
 
 
   <!-- jQuery first, then Tether, then Bootstrap JS. -->
@@ -273,18 +355,4 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 </body>
-  <footer class="footer">
-        <div class="container">
-          <div class="logo__img mx-auto">
-            <img src="assets/logo_.png" alt="로고"></img>
-          </div>
-          <h2 class="service_name">Weather Closet</h2>
-          <p class="service_text">이화여대 김선경, 연세대 김연진, 덕성여대 이민현, 세종대 이완수, 동덕여대 장윤미로 이루어진 팀입니다.<br>
-          모두가 날씨에 맞는 옷을 입는 그날까지 -ing.
-          </p>
-          <p class="copyright">&copy; 2017 WeatherCloset. All Rights Reserved.</p>
-          </div>
-        </footer>
 
-
-</html>
