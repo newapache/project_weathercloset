@@ -1,6 +1,109 @@
+require "date"
+require "net/http"
+require "uri"
+require "json"
+
 class HomeController < ApplicationController
     def index
-        forecast = forecast = ForecastIO.forecast(37.56, 126.97, params: { units: 'si' })
+        key = "u8UqpwDnLxodjJPcJwDpK8ODsOmUCBHpUaUrTcIXH3DTXt%2BFp1EKmR%2FB7dReTT9XyqaBZQkwUZMvBMCsLGc2IQ%3D%3D"
+        url = "http://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc/getCtprvnMesureLIst?itemCode=PM10&dataGubun=HOUR&searchCondition=MONTH&pageNo=1&numOfRows=1&ServiceKey="+key+"&_returnType=json"
+        uri = URI(url)
+        response = Net::HTTP.get(uri)
+        dust = JSON.parse(response)
+        @dustValue = dust["list"][0]["seoul"]
+        
+        
+        
+        @settingLocation = params[:id]
+        @mylocation = params[:id]
+        if @mylocation == "강원도" 
+          lat = 38.25
+          lon = 128.56
+          @dustValue = dust["list"][0]["gangwon"]
+        elsif @mylocation == "경기도"
+          lat = 37.692438
+          lon = 126.784607
+          @dustValue = dust["list"][0]["gyeonggi"]
+        elsif @mylocation == "경상남도"
+          lat = 35.30
+          lon = 128.62
+          @dustValue = dust["list"][0]["gyeongnam"]
+        elsif @mylocation == "경상북도"
+          lat = 36.09
+          lon = 129.38
+          @dustValue = dust["list"][0]["gyeongbuk"]
+        elsif @mylocation == "광주광역시"
+          lat = 35.143559
+          lon = 126.839677
+          @dustValue = dust["list"][0]["gwangju"]
+        elsif @mylocation == "대구광역시"
+          lat = 35.862976
+          lon = 128.595527
+          @dustValue = dust["list"][0]["daegu"]
+        elsif @mylocation == "대전광역시"
+          lat = 36.342051
+          lon = 127.405268
+          @dustValue = dust["list"][0]["daejeon"]
+        elsif @mylocation == "부산광역시"
+          lat = 35.159879
+          lon = 129.063548
+          @dustValue = dust["list"][0]["busan"]
+        elsif @mylocation == "서울특별시"
+          lat = 37.541350
+          lon = 127.010257
+          @dustValue = dust["list"][0]["seoul"]
+        elsif @mylocation == "세종특별자치시"
+          lat = 36.574151
+          lon = 127.288521
+          @dustValue = dust["list"][0]["sejong"]
+        elsif @mylocation == "울산광역시"
+          lat = 35.5826 
+          lon = 129.3344
+          @dustValue = dust["list"][0]["ulsan"]
+        elsif @mylocation == "인천광역시"
+          lat = 37.96611 
+          lon = 124.63046
+          @dustValue = dust["list"][0]["incheon"]
+        elsif @mylocation == "전라남도"
+          lat = 34.81689 
+          lon = 126.38121
+          @dustValue = dust["list"][0]["jeonnam"]
+        elsif @mylocation == "전라북도"
+          lat = 
+          lon =
+          @dustValue = dust["list"][0]["jeonbuk"]
+        elsif @mylocation == "제주특별자치도"
+          lat = 33.38678
+          lon =  126.88021
+          @dustValue = dust["list"][0]["jeju"]
+        elsif @mylocation == "충청남도"
+          lat = 36.80 
+          lon = 127.15
+          @dustValue = dust["list"][0]["chungnam"]
+        elsif @mylocation == "충청북도"
+          lat = 36.64
+          lon = 127.48
+          @dustValue = dust["list"][0]["chungbuk"]
+        else
+          lat = 37.53
+          lon = 126.96
+          
+          @mylocation = "서울특별시"
+
+          @dustValue = dust["list"][0]["seoul"]
+        end
+        
+        if @dustValue.to_i >= 151
+          @dustGrade = "매우 나쁨"
+        elsif @dustValue.to_i >= 81
+          @dustGrade = "나쁨"
+        elsif @dustValue.to_i >= 31
+          @dustGrade = "보통"
+        else
+          @dustGrade = "좋음"
+        end
+        forecast = forecast = ForecastIO.forecast(lat, lon, params: { units: 'si' })
+        #forecast = forecast = ForecastIO.forecast(37.56, 126.97, params: { units: 'si' })
         @currentData = forecast.currently
         @timezone = forecast.timezone
         #@daily = forecast.daily.summary
@@ -283,7 +386,93 @@ class HomeController < ApplicationController
    
     
     def weather
-        forecast = forecast = ForecastIO.forecast(37.56, 126.97, params: { units: 'si' })
+      
+        key = "u8UqpwDnLxodjJPcJwDpK8ODsOmUCBHpUaUrTcIXH3DTXt%2BFp1EKmR%2FB7dReTT9XyqaBZQkwUZMvBMCsLGc2IQ%3D%3D"
+        url = "http://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc/getCtprvnMesureLIst?itemCode=PM10&dataGubun=HOUR&searchCondition=MONTH&pageNo=1&numOfRows=1&ServiceKey="+key+"&_returnType=json"
+        uri = URI(url)
+        response = Net::HTTP.get(uri)
+        dust = JSON.parse(response)
+        @dustValue = dust["list"][0]["seoul"]
+        
+        
+         #location 
+        @mylocation = params[:id]
+        if @mylocation == "강원도" 
+          lat = 38.25
+          lon = 128.56
+          @dustValue = dust["list"][0]["gangwon"]
+        elsif @mylocation == "경기도"
+          lat = 37.692438
+          lon = 126.784607
+          @dustValue = dust["list"][0]["gyeonggi"]
+        elsif @mylocation == "경상남도"
+          lat = 35.30
+          lon = 128.62
+          @dustValue = dust["list"][0]["gyeongnam"]
+        elsif @mylocation == "경상북도"
+          lat = 36.09
+          lon = 129.38
+          @dustValue = dust["list"][0]["gyeongbuk"]
+        elsif @mylocation == "광주광역시"
+          lat = 35.143559
+          lon = 126.839677
+          @dustValue = dust["list"][0]["gwangju"]
+        elsif @mylocation == "대구광역시"
+          lat = 35.862976
+          lon = 128.595527
+          @dustValue = dust["list"][0]["daegu"]
+        elsif @mylocation == "대전광역시"
+          lat = 36.342051
+          lon = 127.405268
+          @dustValue = dust["list"][0]["daejeon"]
+        elsif @mylocation == "부산광역시"
+          lat = 35.159879
+          lon = 129.063548
+          @dustValue = dust["list"][0]["busan"]
+        elsif @mylocation == "서울특별시"
+          lat = 37.541350
+          lon = 127.010257
+          @dustValue = dust["list"][0]["seoul"]
+        elsif @mylocation == "세종특별자치시"
+          lat = 36.574151
+          lon = 127.288521
+          @dustValue = dust["list"][0]["sejong"]
+        elsif @mylocation == "울산광역시"
+          lat = 35.5826 
+          lon = 129.3344
+          @dustValue = dust["list"][0]["ulsan"]
+        elsif @mylocation == "인천광역시"
+          lat = 37.96611 
+          lon = 124.63046
+          @dustValue = dust["list"][0]["incheon"]
+        elsif @mylocation == "전라남도"
+          lat = 34.81689 
+          lon = 126.38121
+          @dustValue = dust["list"][0]["jeonnam"]
+        elsif @mylocation == "전라북도"
+          lat = 
+          lon =
+          @dustValue = dust["list"][0]["jeonbuk"]
+        elsif @mylocation == "제주특별자치도"
+          lat = 33.38678
+          lon =  126.88021
+          @dustValue = dust["list"][0]["jeju"]
+        elsif @mylocation == "충청남도"
+          lat = 36.80 
+          lon = 127.15
+          @dustValue = dust["list"][0]["chungnam"]
+        elsif @mylocation == "충청북도"
+          lat = 36.64
+          lon = 127.48
+          @dustValue = dust["list"][0]["chungbuk"]
+        else
+          lat = 37.53
+          lon = 126.96
+          
+          @mylocation = "서울특별시"
+        end
+      
+        forecast = forecast = ForecastIO.forecast(lat, lon, params: { units: 'si' })
         @currentData = forecast.currently
         @timezone = forecast.timezone
         #@daily = forecast.daily.summary
@@ -319,7 +508,7 @@ class HomeController < ApplicationController
 
        # 0이 sunday부터 6까지(6은 saturday)
        # 현재 시간을 now에 저장
-       now = Time.now.in_time_zone('Seoul')
+        now = Time.now.in_time_zone('Seoul')
       
        # 오늘 월/일
        #tmonth = now.strftime("%m") %>
@@ -336,11 +525,28 @@ class HomeController < ApplicationController
         
         @korMin = Time.now.strftime("%M")
         
-        
-        
+      
+        @hourlyData = forecast.hourly.data
         
        
-        @hourlyData = forecast.hourly.data
+          
+          #미세먼지 등급
+          
+          
+        if @dustValue.to_i >= 151
+          @dustGrade = "매우 나쁨"
+        elsif @dustValue.to_i >= 81
+          @dustGrade = "나쁨"
+        elsif @dustValue.to_i >= 31
+          @dustGrade = "보통"
+        else
+          @dustGrade = "좋음"
+        end
+        
+    end
+    
+    def setting
+      before_action :authenticate_user!
     end
     
   
