@@ -50,23 +50,23 @@
      <!--나중에는 루비 반복문으로 돌려야함 -->
     <div class="row mb-5 no-gutters">
         <% @posts.each do |post| %>
-          <div class="col-sm-4 clst">
+          <div class="col-sm-4 mt-4 clst">
                   
                      <p> <%= post.id %></p>
                      <% if post.image.url.nil? %>
                        <%= image_tag("logo_.png") %>
                      <% else %>
-                       <a href = "/posts/show">
+                       <a href = "/posts/<%=post.id%>">
                      <%= image_tag post.image.url, :class => "upload-img"%>
-                     <div class="overlay">
-                      <div class="text justify-content-center">
-                        <i class="like fa fa-heart"></i>
-                        <i class="comment fa fa-commenting-o"></i>
-                      </div>
-                      </div>
+                     <!--<div class="overlay">-->
+                     <!-- <div class="text justify-content-center">-->
+                     <!--   <i class="like fa fa-heart"></i>-->
+                     <!--   <i class="comment fa fa-commenting-o"></i>-->
+                     <!-- </div>-->
+                     <!-- </div>-->
                       </a>
                      <% end %>
-                     <p> <%= link_to 'Edit', edit_post_path(post.id) %>    <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+                    
                   
           </div>
        <% end %>

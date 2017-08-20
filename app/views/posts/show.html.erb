@@ -18,23 +18,29 @@
             </div>
         </div>
     <div class="col-8 d-flex flex-column">
-            <span class="mb-1">닉네임</span>
-            <span class="small mb-1">팔로우 수 :  </span>
+            <span class="mb-1"><%= current_user.name %> </span>
             <span class="small mb-1">거주지역 : </span>
             <span class="small mb-1">스타일 : </span>
-            <span class="mb-1"><p><%= current_user.email %></p></span>
+           
     </div>
     </div>
     
     <p><%= @post.content %></p>
     <p>outer :<%= @post.outer %> </p>
     <p>top : <%= @post.top %></p>
+    <p>bottom : <%= @post.bottom %></p>
     <p>dress : <%= @post.dress %></p>
     <p>etc : <%= @post.etc %></p>
     
     <div class="edit justify-content-end">
-    <%= link_to 'Edit', edit_post_path %>    <%= link_to 'Destroy', post_path, method: :delete, data: { confirm: 'Are you sure?' } %>
-        <i class="fa fa-pencil-square-o fa-3x" aria-hidden="true"></i>
+    <%= link_to edit_post_path do %>
+    <i class="fa fa-pencil-square-o fa-2x mr-4" aria-hidden="true"></i>
+    <% end %>
+    
+    <%= link_to post_path, method: :delete, data: { confirm: 'Are you sure?' } do %>
+    <i class="fa fa-times fa-2x" aria-hidden="true"></i>
+    <% end %>
+        
     </div>
     <!--업로드할때 작성한 내용 출력-->
     

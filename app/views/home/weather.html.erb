@@ -145,7 +145,7 @@
             var myChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: [<%=@korHour-12%>, <%=@korHour-8%>, <%=@korHour-4%>, "현재 <%=@korHour%>",<%=@korHour+4%>, <%=@korHour+8%>, <%=@korHour+12%>],
+                    labels: ["12시간전","8시간전", "4시간전", "현재","12시간후","8시간후", "4시간후"],
                     datasets: [{
                         label: 'Today Weather',
                         data: [ <%= @hourlyData[-12].temperature.to_i%>, <%= @hourlyData[-8].temperature.to_i%>, <%= @hourlyData[-4].temperature.to_i%>, <%= @hourlyData[0].temperature.to_i%>, <%= @hourlyData[4].temperature.to_i%>, <%= @hourlyData[8].temperature.to_i%>, <%= @hourlyData[12].temperature.to_i%>],
