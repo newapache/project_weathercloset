@@ -10,6 +10,10 @@ class CommentsController < ApplicationController
         redirect_to :back
     end
     
+    def show
+        @comments = Comment.where(post_id: params[:post_id])
+    end
+    
     def destroy
         @comment.destroy
         redirect_to :back

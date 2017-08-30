@@ -22,5 +22,8 @@ Rails.application.routes.draw do
   
   resources 'posts' do
     post "/like", to: "likes#like_toggle"
+  
+  # post '/posts/show/:post_id/comments/create' => 'comments#create'
+  # post '/posts/show/:post_id/comments/destroy/:comment_id' => 'comments#destroy'
   end
 end

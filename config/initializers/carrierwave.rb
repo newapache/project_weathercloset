@@ -10,5 +10,5 @@ CarrierWave.configure do |config|
     aws_secret_access_key: Figaro.env.CLOSET_AWS_SECRET,
     region:                'ap-northeast-2',                  # optional, defaults to 'us-east-1'
   }
-  config.fog_directory  = 'weathercloset'                          # required
+  config.fog_directory  = 'weathercloset-dev'                          # required
 end
