@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'chartkick'
 gem 'groupdate'
-
+gem 'figaro'
 # devise
 gem 'devise'
 gem 'devise-bootstrap-views'
@@ -61,4 +61,6 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-
+group :production do
+  gem 'mysql2'
+end
