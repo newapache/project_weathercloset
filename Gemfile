@@ -1,5 +1,10 @@
 source 'https://rubygems.org'
 
+# Use sqlite3 as the database for Active Record
+gem 'sqlite3', :group => :development
+gem 'pg', :group => :production
+gem 'rails_12factor', :group => :production
+
 gem 'chartkick'
 gem 'groupdate'
 gem 'figaro'
@@ -29,11 +34,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3', :group => :development
-gem 'pg', :group => :production
-gem 'rails_12factor', :group => :production
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
