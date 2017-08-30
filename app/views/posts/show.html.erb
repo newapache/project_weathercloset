@@ -46,7 +46,17 @@
     
     </div>
     <!-- 댓글 창-->
-   
+   <form action='/post/show/<%= @post.id %>/comments/create' method='post'>
+	<input type='text' name='input_comment'>
+	<input type='submit'>	
+   </form>
+    <hr>
+    <h3> 댓글은 여기에 </h3>
+      <% @comments.each do |comment| %>
+    	<p><%= comment.content %>
+    	<a href='/posts/show/<%=@post.id%>/comments/destroy/<% comment.id %>' data-confirm="댓글을 삭제합니다." data-method='post'>[x]</a>
+    	</p>
+      <% end %>
     </div>
 </div>
 </body>
