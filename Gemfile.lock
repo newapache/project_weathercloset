@@ -138,6 +138,7 @@ GEM
     minitest (5.10.3)
     multi_json (1.12.1)
     multipart-post (2.0.0)
+    mysql2 (0.4.9)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
     orm_adapter (0.5.0)
@@ -267,6 +268,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   mini_magick
+  mysql2
   pg
   rails (= 4.2.5)
   rails-i18n
@@ -281,4 +283,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.15.3
+   1.15.4
