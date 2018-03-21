@@ -6,8 +6,8 @@ CarrierWave.configure do |config|
     provider:              'AWS',                        # required
     # aws_access_key_id:     "#{ENV['AWS_KEY']}",                     # required
     # aws_secret_access_key: "#{ENV['AWS_SECRET']}",                         # required
-    aws_access_key_id: Figaro.env.CLOSET_AWS_KEY,
-    aws_secret_access_key: Figaro.env.CLOSET_AWS_SECRET,
+    aws_access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+    aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
     region:                'ap-northeast-2',                  # optional, defaults to 'us-east-1'
   }
   config.fog_directory  = 'weathercloset-dev'                          # required
