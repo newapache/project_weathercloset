@@ -1,12 +1,13 @@
 require 'carrierwave/orm/activerecord'
+require 'carrierwave/storage/fog'
 
-CarrierWave.configure do |config|
-  
-  if Rails.env.production?
+if Rails.env.production?
     CarrierWave.configure do |config|
       config.storage = :fog
     end
-  end
+end
+
+CarrierWave.configure do |config|
   
   config.fog_provider = 'fog/aws'                        # required
   config.fog_credentials = {
