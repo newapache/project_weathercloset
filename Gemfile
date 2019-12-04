@@ -11,7 +11,7 @@ gem 'figaro'
 # devise
 gem 'devise'
 gem 'devise-bootstrap-views'
-gem 'bootstrap-sass',  '~> 3.3.6'
+gem 'bootstrap-sass',  '~> 3.4.1'
 
 #i18n
 gem 'rails-i18n'
